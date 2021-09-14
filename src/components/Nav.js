@@ -1,6 +1,6 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
-import { Button, Typography } from '@material-ui/core'
+import { Button, button } from '@material-ui/core'
 import { changeBackground } from '../helpers/StyleOptions'
 import TwitterIcon from '@material-ui/icons/Twitter';
 import HomeIcon from '@material-ui/icons/Home';
@@ -11,6 +11,10 @@ import EmailIcon from '@material-ui/icons/Email';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
+import PersonIcon from '@material-ui/icons/Person';
+import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 
 const Nav = ({ background, setBackground }) => {
 
@@ -18,77 +22,81 @@ const Nav = ({ background, setBackground }) => {
         <Grid item xs={4}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <div className="iconborder">
-                        <TwitterIcon  />
+                    <div className="iconborder" onClick={() => setBackground(changeBackground(background))}>
+                        {/* <TwitterIcon  /> */}
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}>
-                        <HomeIcon /> 
-                        <Typography >
+                    {/* <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}> */}
+                        {/* <HomeIcon />  */}
+                        <button >
                             Home
-                        </Typography>
-                    </Button>
+                        </button>
+                    {/* </Button> */}
                 </Grid>
                 <Grid item xs={12}>
-                    <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}>
-                        <Typography >
+                    {/* <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}> */}
+                        {/* <button style={{margin: "5%"}} >
                             #
-                        </Typography>
-                        <Typography >
+                        </button> */}
+                        <button >
                             Explore
-                        </Typography>
-                    </Button>
+                        </button>
+                    {/* </Button> */}
                 </Grid>
                 <Grid item xs={12}>
-                    <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}>
-                        <NotificationsNoneIcon/>
-                        <Typography>
+                    {/* <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}> */}
+                        {/* <NotificationsNoneIcon/> */}
+                        <button>
                             Notifications
-                        </Typography>
-                    </Button>
+                        </button>
+                    {/* </Button> */}
                 </Grid>
                 <Grid item xs={12}>
-                    <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}>
-                        <Typography>
+                    {/* <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}> */}
+                        {/* <MailOutlineIcon/> */}
+                        <button>
                             Messages
-                        </Typography>
-                    </Button>
+                        </button>
+                    {/* </Button> */}
                 </Grid>
                 <Grid item xs={12}>
-                    <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}>
-                        <Typography>
+                    {/* <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}> */}
+                        {/* <BookmarkBorderIcon /> */}
+                        <button>
                             Bookmarks
-                        </Typography>
-                    </Button>
+                        </button>
+                    {/* </Button> */}
                 </Grid>
                 <Grid item xs={12}>
-                    <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}>
-                        <Typography>
+                    {/* <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}> */}
+                        {/* <LibraryBooksOutlinedIcon /> */}
+                        <button>
                             Lists
-                        </Typography>
-                    </Button>
+                        </button>
+                    {/* </Button> */}
                 </Grid>
                 <Grid item xs={12}>
-                    <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}>
-                        <Typography>
+                    {/* <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}> */}
+                        {/* <PersonOutlineOutlinedIcon /> */}
+                        <button>
                             Profile
-                        </Typography>
-                    </Button>
+                        </button>
+                    {/* </Button> */}
                 </Grid>
                 <Grid item xs={12}>
-                    <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}>
-                        <Typography>
+                    {/* <Button className="button" size="large" onClick={() => setBackground(changeBackground(background))}> */}
+                        <button>
                             ... More
-                        </Typography>
-                    </Button>
+                        </button>
+                    {/* </Button> */}
                 </Grid>
                 <Grid item xs={12}>
-                    <Button className="button" color="primary" size="large" onClick={() => setBackground(changeBackground(background))}>
-                        <Typography >
+                    {/* <Button className="button tweet" size="large" onClick={() => setBackground(changeBackground(background))}> */}
+                        <button >
                             Tweet
-                        </Typography> 
-                    </Button>
+                        </button> 
+                    {/* </Button> */}
                 </Grid>
             </Grid>
         </Grid>

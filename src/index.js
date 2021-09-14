@@ -2,10 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createTheme, ThemeProvider } from "@material-ui/core"
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#1DA1F2",
+    },
+    secondary: {
+      main: "#FFFFFF"
+    }
+  }
+})
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

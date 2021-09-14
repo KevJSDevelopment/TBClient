@@ -8,8 +8,24 @@
     float: left;
 }
 
+button.tweet {
+    width: 100%;
+}
+
 .MuiButton-root {
     border-radius: 50%;
+}
+
+.right {
+    float: right;
+}
+
+.home-title {
+    border-bottom: 2px solid grey;
+}
+
+.tweet-text {
+    width: 100%;
 }
 
 .Nav {
