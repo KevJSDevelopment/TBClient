@@ -1,8 +1,13 @@
-import React, {/*useEffect, useState*/} from "react"
+import React, { useEffect, useState } from "react"
 import Grid from '@material-ui/core/Grid'
-import Discover from "./components/Discover";
+import Nav from "./components/Nav"
+import Home from "./components/Home"
+import Discover from "./components/Discover"
+import './styles/app.css';
 
 const App = () => {
+  
+  const [background, setBackground] = useState(false)
 
   const URL = "https://localhost:5001/api/users"
 
@@ -11,13 +16,38 @@ const App = () => {
   //   headers: {"Content-Type": "application/json"},
   //   body: JSON.stringify({ username: `${name}-${count}`, displayname: `test-${count}`, password: `test-${count}`, imageurl: `test-${count}`})
   // }
+  useEffect(() => {
+    const body = document.body
+    if(!background){
+      body.style.backgroundColor = "white"
+    }
+    else body.style.backgroundColor = "#0084b4"
+  }, [background])
 
   return (
     <div className="App">
-      <Grid container className={classes.root} spacing={2}>
-        <Nav />
-        <Home />
-        <Discover />
+      <Grid container spacing={2}>
+          <Grid item className="Nav" xs={4}>
+            <Grid container>
+              <Grid item xs={6}>
+
+              </Grid>
+              <Nav background={background} setBackground={setBackground} />
+              <Grid item xs={1}>
+
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={4}>
+            <Grid container>
+              <Home />
+            </Grid>
+          </Grid>
+          <Grid item className="Discover" xs={4}>
+            <Grid container>
+              <Discover />
+            </Grid>
+          </Grid>
       </Grid>
     </div>
   );
