@@ -18,10 +18,10 @@ import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined'
 
 const Nav = ({ background, setBackground }) => {
 
-    const [textColor, setTextColor] = useState("")
+    const [textColor, setTextColor] = useState("inherit")
 
     useEffect(() => { 
-        if(!background) setTextColor("")
+        if(!background) setTextColor("inherit")
         else setTextColor("secondary")
     }, [background])
     return (
@@ -42,7 +42,7 @@ const Nav = ({ background, setBackground }) => {
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button">
-                        <Typography variant="inherit" color={textColor} alignLeft className="button-text">
+                        <Typography variant="inherit" color={textColor} className="button-text">
                             #
                         </Typography>
                         <Typography variant="inherit" color={textColor} className="button-text">
@@ -92,7 +92,7 @@ const Nav = ({ background, setBackground }) => {
                 </Grid>
                 <Grid item xs={12}>
                         <Button className="button"  onClick={() => setBackground(changeBackground(background))}>
-                            <Typography variant="inherit" color={textColor} alignLeft className="button-text">
+                            <Typography variant="inherit" color={textColor} className="button-text">
                                 ...
                             </Typography>
                             <Typography variant="inherit" color={textColor} className="button-text">

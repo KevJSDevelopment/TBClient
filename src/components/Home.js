@@ -1,25 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Grid from '@material-ui/core/Grid'
-import { Button, Input, TextField, Typography } from '@material-ui/core'
+import { Button, TextField, Typography } from '@material-ui/core'
+import HomeHeader from './HomeHeader'
+import TweetFeed from './TweetFeed'
 
 const Home = () => {
+
+    const [tweets, setTweets] = useState([])
+
+    const url = "https://localhost:5001/tweets"
+
+    const getTweets = async () => {
+        const res = await fetch(url)
+        const data = await res.json()
+        
+        setTweets(data)
+    }
+
+    useEffect(() => {
+        getTweets()
+    }, [])
+
     return (
         <Grid item xs={12} >
-            <Grid container spacing={2}>
-                <Grid item className="home-title" xs={12}>
-                    <Typography variant="overline">
-                        Home
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField className="tweet-text" placeholder="What's Happening?" variant="standard" />
-                </Grid>
-                <Grid item xs={12}>
-                    <Button variant="contained" color="primary" className="button tweet-2">
-                        Tweet
-                    </Button>
-                </Grid>
-            </Grid>
+            <HomeHeader />
+            <TweetFeed tweets={tweets} />
         </Grid>
     )
 }

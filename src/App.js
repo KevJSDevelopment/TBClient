@@ -10,13 +10,12 @@ const App = () => {
   
   const [background, setBackground] = useState(false)
 
-  const URL = "https://localhost:5001/api/users"
-
   // const meta = {
   //   method: "POST",
   //   headers: {"Content-Type": "application/json"},
   //   body: JSON.stringify({ username: `${name}-${count}`, displayname: `test-${count}`, password: `test-${count}`, imageurl: `test-${count}`})
   // }
+  
   useEffect(() => {
     const body = document.body
     if(!background){
@@ -27,7 +26,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
           <Grid item className="Nav" xs={4}>
             <Grid container>
               <Grid item xs={7} />
