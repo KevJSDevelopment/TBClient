@@ -15,7 +15,7 @@ const Home = () => {
                     <TextField className="tweet-text" placeholder="What's Happening?" variant="standard" />
                 </Grid>
                 <Grid item xs={12}>
-                    <Button variant="contained" color="primary" className="button right">
+                    <Button variant="contained" color="primary" className="button tweet-2">
                         Tweet
                     </Button>
                 </Grid>

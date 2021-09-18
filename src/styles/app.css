@@ -4,20 +4,46 @@
 
 .button {
     background-color: white;
-    border-width: 0;
     float: left;
+    border-radius: 25px 25px 25px 25px !important;
 }
 
 button.tweet {
-    width: 100%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 55px;
+    color: white;
+    font-weight:700;
+    font-size: 1.1rem !important;
+}
+
+button.tweet-2 {
+    width: 15%;
+    float: right;
+    height: 45px;
+    color: white;
+    font-weight:700;
+    font-size: 1rem !important;
+}
+
+.MuiTypography-root {
+    font: bolder;
+    font-size: 1.25rem !important;
+    font-weight: 400;
+}
+
+.button-text {
+    padding-right: 10px;
+}
+
+.MuiButton-text {
+    padding: 6px 24px !important;
+    font-size: 1.25rem !important;
 }
 
 .MuiButton-root {
-    border-radius: 50%;
-}
-
-.right {
-    float: right;
+    text-transform: capitalize !important;
 }
 
 .home-title {
@@ -44,9 +70,7 @@ button.tweet {
     border-radius: 50%;
     text-align: center;
     vertical-align: middle;
-    padding: 10px;
 }
 
-.iconborder:hover {
-    background-color:grey;
-}
+
+

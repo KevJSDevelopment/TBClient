@@ -22,7 +22,7 @@ const App = () => {
     if(!background){
       body.style.backgroundColor = "white"
     }
-    else body.style.backgroundColor = "#0084b4"
+    else body.style.backgroundColor = "black"
   }, [background])
 
   return (
@@ -30,13 +30,8 @@ const App = () => {
       <Grid container spacing={2}>
           <Grid item className="Nav" xs={4}>
             <Grid container>
-              <Grid item xs={6}>
-
-              </Grid>
+              <Grid item xs={7} />
               <Nav background={background} setBackground={setBackground} />
-              <Grid item xs={1}>
-
-              </Grid>
             </Grid>
           </Grid>
           <Grid item xs={4}>
