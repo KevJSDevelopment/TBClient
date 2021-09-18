@@ -22,7 +22,7 @@ const App = () => {
     if(!background){
       body.style.backgroundColor = "white"
     }
-    else body.style.backgroundColor = "black"
+    else body.style.backgroundColor = "#141d26"
   }, [background])
 
   return (

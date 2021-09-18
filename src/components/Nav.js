@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Grid from '@material-ui/core/Grid'
 import { Button, IconButton, Typography } from '@material-ui/core'
 import { changeBackground } from '../helpers/StyleOptions'
@@ -18,78 +18,84 @@ import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined'
 
 const Nav = ({ background, setBackground }) => {
 
+    const [textColor, setTextColor] = useState("")
+
+    useEffect(() => { 
+        if(!background) setTextColor("")
+        else setTextColor("secondary")
+    }, [background])
     return (
         <Grid item xs={5}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <IconButton color="primary" className="iconborder">
-                        <TwitterIcon fontSize="large" color="primary" />
+                        <TwitterIcon fontSize="large" color={!background ? "primary" : "secondary"} />
                     </IconButton>
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button home">
-                        <HomeIcon fontSize="large" className="button-text" />
-                        <Typography variant="inherit" className="button-text" >
+                        <HomeIcon color={textColor} fontSize="large" className="button-text" />
+                        <Typography variant="inherit" color={textColor} className="button-text" >
                             Home
                         </Typography>
                     </Button>
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button">
-                        <Typography variant="inherit" alignLeft className="button-text">
+                        <Typography variant="inherit" color={textColor} alignLeft className="button-text">
                             #
                         </Typography>
-                        <Typography variant="inherit" className="button-text">
+                        <Typography variant="inherit" color={textColor} className="button-text">
                             Explore
                         </Typography>
                     </Button>
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button">
-                        <NotificationsNoneIcon fontSize="large" className="button-text" />
-                        <Typography variant="inherit" className="button-text">
+                        <NotificationsNoneIcon color={textColor} fontSize="large" className="button-text" />
+                        <Typography variant="inherit" color={textColor} className="button-text">
                             Notifications
                         </Typography>
                     </Button>
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button">
-                        <MailOutlineIcon fontSize="large" className="button-text" />
-                        <Typography variant="inherit" className="button-text">
+                        <MailOutlineIcon color={textColor} fontSize="large" className="button-text" />
+                        <Typography variant="inherit" color={textColor} className="button-text">
                             Messages
                         </Typography>
                     </Button>
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button">
-                        <BookmarkBorderIcon fontSize="large" className="button-text" />
-                        <Typography variant="inherit" className="button-text">
+                        <BookmarkBorderIcon color={textColor} fontSize="large" className="button-text" />
+                        <Typography variant="inherit" color={textColor} className="button-text">
                             Bookmarks
                         </Typography>
                     </Button>
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button">
-                        <LibraryBooksOutlinedIcon fontSize="large" className="button-text" />
-                        <Typography variant="inherit" className="button-text">
+                        <LibraryBooksOutlinedIcon color={textColor} fontSize="large" className="button-text" />
+                        <Typography variant="inherit" color={textColor} className="button-text">
                             Lists
                         </Typography>
                     </Button>
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button">
-                        <PersonOutlineOutlinedIcon fontSize="large" className="button-text" />
-                        <Typography variant="inherit" className="button-text">
+                        <PersonOutlineOutlinedIcon color={textColor} fontSize="large" className="button-text" />
+                        <Typography variant="inherit" color={textColor} className="button-text">
                             Profile
                         </Typography>
                     </Button>
                 </Grid>
                 <Grid item xs={12}>
                         <Button className="button"  onClick={() => setBackground(changeBackground(background))}>
-                            <Typography variant="inherit" alignLeft className="button-text">
+                            <Typography variant="inherit" color={textColor} alignLeft className="button-text">
                                 ...
                             </Typography>
-                            <Typography variant="inherit" className="button-text">
+                            <Typography variant="inherit" color={textColor} className="button-text">
                                 More
                             </Typography>
                         </Button>
