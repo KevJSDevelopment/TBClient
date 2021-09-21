@@ -1,8 +1,9 @@
-import React from 'react'
-import Grid from '@material-ui/core/Grid'
-import { Button, TextField, Typography } from '@material-ui/core'
+import React, { useState } from 'react'
+import Grid from '@mui/material/Grid'
+import { Button, TextField, Typography } from '@mui/material'
 
 const HomeHeader = () => {
+    const [tweetDisabled, setTweetDisabled] = useState(true)
     return (
         <Grid container spacing={2}>
             <Grid item className="home-title" xs={12}>
@@ -14,7 +15,7 @@ const HomeHeader = () => {
                 <TextField className="tweet-text" placeholder="What's Happening?" variant="standard" />
             </Grid>
             <Grid item xs={12}>
-                <Button variant="contained" color="primary" className="button tweet-2">
+                <Button variant="contained" disabled={tweetDisabled} color="primary" className="button tweet-2">
                     Tweet
                 </Button>
             </Grid>

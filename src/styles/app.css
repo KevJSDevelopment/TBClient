@@ -3,7 +3,6 @@
 }
 
 .button {
-    background-color: white;
     float: left;
     border-radius: 25px 25px 25px 25px !important;
 }
@@ -21,8 +20,9 @@ button.tweet {
 button.tweet-2 {
     width: 15%;
     float: right;
+    margin-right: 5%;
     height: 45px;
-    color: white;
+    color: white !important;
     font-weight:700;
     font-size: 1rem !important;
 }
@@ -38,7 +38,6 @@ button.tweet-2 {
 }
 
 .MuiButton-text {
-    padding: 6px 24px !important;
     font-size: 1.25rem !important;
 }
 
@@ -47,7 +46,7 @@ button.tweet-2 {
 }
 
 .home-title {
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid rgb(233, 232, 232);
 }
 
 .tweet-text {
@@ -55,12 +54,12 @@ button.tweet-2 {
 }
 
 .Nav {
-    border-right: 2px solid grey;
+    border-right: 2px solid rgb(233, 232, 232);
     height: 100vh;
 }
 
 .Discover {
-    border-left: 2px solid grey;
+    border-left: 2px solid rgb(233, 232, 232);
     height: 100vh;
 }
 
@@ -73,8 +72,46 @@ button.tweet-2 {
 }
 
 .tweet-card {
-    width: 100%;
-    border: 2px solid grey;
+    border: 2px solid rgb(233, 232, 232);
+    border-radius: 0px 0px 0px 0px !important;
 }
 
+.tweet-card:hover {
+    background-color: whitesmoke;
+    cursor: pointer;
+}
 
+.MuiGrid-spacing-xs-1 > .MuiGrid-item {
+    padding: 0px !important;
+}
+
+.MuiGrid-spacing-xs-2 {
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.tweet-image {
+    border-radius: 15px 15px 15px 15px !important;
+    max-width: 600px;
+}
+
+.MuiTypography-root.display-name {
+    font-weight: 700 !important;
+}
+
+.MuiTypography-root.display-name:hover {
+    text-decoration: underline;
+
+}
+
+.signature {
+    display: flex;
+}
+
+.Mui-disabled {
+    background-color: rgba(29, 161, 242, 0.4) !important;
+}
+
+.css-z1g505-MuiButtonBase-root-MuiButton-root {
+    color: black !important;
+}

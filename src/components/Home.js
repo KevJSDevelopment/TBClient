@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Grid from '@material-ui/core/Grid'
-import { Button, TextField, Typography } from '@material-ui/core'
+import Grid from '@mui/material/Grid'
+import { Button, TextField, Typography } from '@mui/material'
 import HomeHeader from './HomeHeader'
 import TweetFeed from './TweetFeed'
 
@@ -24,6 +24,7 @@ const Home = () => {
     return (
         <Grid item xs={12} >
             <HomeHeader />
+            <br/>
             <TweetFeed tweets={tweets} />
         </Grid>
     )

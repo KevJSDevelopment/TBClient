@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import Grid from '@material-ui/core/Grid'
-import { Button, IconButton, Typography } from '@material-ui/core'
+import Grid from '@mui/material/Grid'
+import { Button, IconButton, Typography } from '@mui/material'
 import { changeBackground } from '../helpers/StyleOptions'
-import TwitterIcon from '@material-ui/icons/Twitter';
-import HomeIcon from '@material-ui/icons/Home';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
-import EmailIcon from '@material-ui/icons/Email';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import BookmarkIcon from '@material-ui/icons/Bookmark';
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
-import PersonIcon from '@material-ui/icons/Person';
-import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import HomeIcon from '@mui/icons-material/Home';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import EmailIcon from '@mui/icons-material/Email';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
+import PersonIcon from '@mui/icons-material/Person';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 const Nav = ({ background, setBackground }) => {
 
-    const [textColor, setTextColor] = useState("inherit")
+    const [textColor, setTextColor] = useState("#000000")
 
     useEffect(() => { 
-        if(!background) setTextColor("inherit")
+        if(!background) setTextColor("#000000")
         else setTextColor("secondary")
     }, [background])
     return (
@@ -33,8 +33,8 @@ const Nav = ({ background, setBackground }) => {
                     </IconButton>
                 </Grid>
                 <Grid item xs={12}>
-                    <Button className="button home">
-                        <HomeIcon color={textColor} fontSize="large" className="button-text" />
+                    <Button className="button">
+                        <HomeIcon color={!background ? "black" : "secondary"} fontSize="large" className="button-text" />
                         <Typography variant="inherit" color={textColor} className="button-text" >
                             Home
                         </Typography>
@@ -52,7 +52,7 @@ const Nav = ({ background, setBackground }) => {
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button">
-                        <NotificationsNoneIcon color={textColor} fontSize="large" className="button-text" />
+                        <NotificationsNoneIcon color={!background ? "black" : "secondary"} fontSize="large" className="button-text" />
                         <Typography variant="inherit" color={textColor} className="button-text">
                             Notifications
                         </Typography>
@@ -60,7 +60,7 @@ const Nav = ({ background, setBackground }) => {
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button">
-                        <MailOutlineIcon color={textColor} fontSize="large" className="button-text" />
+                        <MailOutlineIcon color={!background ? "black" : "secondary"} fontSize="large" className="button-text" />
                         <Typography variant="inherit" color={textColor} className="button-text">
                             Messages
                         </Typography>
@@ -68,7 +68,7 @@ const Nav = ({ background, setBackground }) => {
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button">
-                        <BookmarkBorderIcon color={textColor} fontSize="large" className="button-text" />
+                        <BookmarkBorderIcon color={!background ? "black" : "secondary"} fontSize="large" className="button-text" />
                         <Typography variant="inherit" color={textColor} className="button-text">
                             Bookmarks
                         </Typography>
@@ -76,7 +76,7 @@ const Nav = ({ background, setBackground }) => {
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button">
-                        <LibraryBooksOutlinedIcon color={textColor} fontSize="large" className="button-text" />
+                        <LibraryBooksOutlinedIcon color={!background ? "black" : "secondary"} fontSize="large" className="button-text" />
                         <Typography variant="inherit" color={textColor} className="button-text">
                             Lists
                         </Typography>
@@ -84,7 +84,7 @@ const Nav = ({ background, setBackground }) => {
                 </Grid>
                 <Grid item xs={12}>
                     <Button className="button">
-                        <PersonOutlineOutlinedIcon color={textColor} fontSize="large" className="button-text" />
+                        <PersonOutlineOutlinedIcon color={!background ? "black" : "secondary"} fontSize="large" className="button-text" />
                         <Typography variant="inherit" color={textColor} className="button-text">
                             Profile
                         </Typography>
