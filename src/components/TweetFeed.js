@@ -1,11 +1,11 @@
 import React from 'react'
 import TweetContainer from './TweetContainer'
 
-const TweetFeed = ({ tweets }) => {
+const TweetFeed = ({ tweets, textColor, backgroundColor }) => {
 
     return (
         tweets.map((tweet, index) => {
-            return <TweetContainer tweet={tweet} key={index} />
+            return <TweetContainer tweet={tweet} textColor={textColor} backgroundColor={backgroundColor} key={index} />
         })
     )
 }

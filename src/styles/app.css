@@ -1,5 +1,6 @@
 .App {
     height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
 
 .button {
@@ -13,28 +14,45 @@ button.tweet {
     margin-right: 5%;
     height: 55px;
     color: white;
-    font-weight:700;
+    font-weight: 600 !important;
     font-size: 1.1rem !important;
 }
 
 button.tweet-2 {
-    width: 15%;
-    float: right;
+    float: right !important;
     margin-right: 5%;
     height: 45px;
     color: white !important;
-    font-weight:700;
+    font-weight: 600!important;
     font-size: 1rem !important;
+}
+
+p.home-text {
+    font-weight: 700 !important;
+    font-size: 22px !important;
+}
+
+.star-icon {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    float: right;
+    margin-right: 2% !important;
+}
+
+.bar-icon {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
 
 .MuiTypography-root {
     font: bolder;
     font-size: 1.25rem !important;
-    font-weight: 400;
+    font-weight: 400 !important;
 }
 
 .button-text {
     padding-right: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .MuiButton-text {
@@ -72,12 +90,13 @@ button.tweet-2 {
 }
 
 .tweet-card {
-    border: 2px solid rgb(233, 232, 232);
+    border-top: 2px solid rgb(233, 232, 232);
     border-radius: 0px 0px 0px 0px !important;
+    padding-bottom: 1% !important;
 }
 
 .tweet-card:hover {
-    background-color: whitesmoke;
+    background-color: whitesmoke !important;
     cursor: pointer;
 }
 
@@ -99,6 +118,24 @@ button.tweet-2 {
     font-weight: 700 !important;
 }
 
+.css-37jdci-MuiTypography-root {
+    color: #7c7c7c  !important;
+    font-weight:lighter !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    line-height: 165% !important;
+}
+
+.css-acwr6o-MuiGrid-root>.MuiGrid-item {
+    padding-left: 15px !important;
+    padding-right: 25px !important;
+}
+
+#at-sign {
+    font-size: 14px !important;
+    line-height: 225% !important;
+}
+
 .MuiTypography-root.display-name:hover {
     text-decoration: underline;
 
@@ -109,9 +146,21 @@ button.tweet-2 {
 }
 
 .Mui-disabled {
-    background-color: rgba(29, 161, 242, 0.4) !important;
+    background-color: rgb(29, 155, 240, 0.4) !important;
 }
 
 .css-z1g505-MuiButtonBase-root-MuiButton-root {
     color: black !important;
+}
+
+.css-1qomy71-MuiInputBase-root-MuiInput-root:before {
+    border-bottom: 0 !important;
+}
+
+.css-1qomy71-MuiInputBase-root-MuiInput-root {
+    font-size: 1.25rem !important;
+}
+
+.MuiTypography-root.MuiTypography-inherit.css-37jdci-MuiTypography-root.tweet-body {
+    font-size: 18px !important;
 }

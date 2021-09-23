@@ -6,8 +6,9 @@ import RepeatRoundedIcon from '@mui/icons-material/RepeatRounded';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
+import { style } from '@mui/system';
 
-const TweetContainer = ({ tweet }) => {
+const TweetContainer = ({ tweet, textColor, backgroundColor }) => {
 
     const [user, setUser] = useState(null)
     const getTweetUser = async () => {
@@ -22,7 +23,7 @@ const TweetContainer = ({ tweet }) => {
     }, [])
 
     return (
-        <Card className="tweet-card" elevation={0}>
+        <Card id={`tweet-${tweet.id}`} className="tweet-card" elevation={0} style={{backgroundColor: backgroundColor}}>
             <Grid container>
                 <Grid item xs={12}>
                     <Grid container spacing={2}>
@@ -30,19 +31,25 @@ const TweetContainer = ({ tweet }) => {
                             {user ? <Avatar src={`data:image/jpg;base64, ${user.imageFiles}`} /> : null}
                         </Grid>
                         <Grid item xs={11}>
-                            <Grid container>
+                            <Grid container >
                                 <Grid item xs={12}>
                                     {user ? 
-                                        <div className="signature"> 
-                                            <Typography className="display-name"> 
+                                        <div className="signature" > 
+                                            <Typography color={textColor} variant="inherit" className="display-name"> 
                                                 {user.displayName} 
                                             </Typography> 
-                                            <Typography className="user-name">
-                                                @{user.username} 
+                                            <Typography variant="inherit" id="at-sign">
+                                                @
+                                            </Typography>
+                                            <Typography variant="inherit" className="user-name">
+                                                {user.username} 
                                             </Typography>
                                         </div>: null}
                                 </Grid>
                                 <Grid item xs={12}>
+                                    <Typography color={textColor} variant="inherit" className="tweet-body">
+                                        {tweet.message}
+                                    </Typography> 
                                     <img src={`data:image/jpg;base64, ${tweet.media}`} className="tweet-image" />
                                 </Grid>
                                 <Grid item xs={12}>

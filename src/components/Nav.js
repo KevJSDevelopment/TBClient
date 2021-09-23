@@ -16,14 +16,9 @@ import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
 import PersonIcon from '@mui/icons-material/Person';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-const Nav = ({ background, setBackground }) => {
+const Nav = ({ background, textColor, setBackground }) => {
 
-    const [textColor, setTextColor] = useState("#000000")
 
-    useEffect(() => { 
-        if(!background) setTextColor("#000000")
-        else setTextColor("secondary")
-    }, [background])
     return (
         <Grid item xs={5}>
             <Grid container spacing={2}>

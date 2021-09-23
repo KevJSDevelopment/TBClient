@@ -5,7 +5,7 @@ import { Typography } from '@mui/material'
 const Discover = () => {
     return (
         <Grid item xs={6}>
-            <Typography variant="overline">
+            <Typography variant="inherit">
                 Discover
             </Typography>
         </Grid>

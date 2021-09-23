@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid'
-import { Button, TextField, Typography } from '@mui/material'
+import { badgeClasses, Button, TextField, Typography } from '@mui/material'
 import HomeHeader from './HomeHeader'
 import TweetFeed from './TweetFeed'
 
-const Home = () => {
+const Home = ({ textColor, backgroundColor }) => {
 
     const [tweets, setTweets] = useState([])
 
@@ -23,9 +23,9 @@ const Home = () => {
 
     return (
         <Grid item xs={12} >
-            <HomeHeader />
+            <HomeHeader textColor={textColor} />
             <br/>
-            <TweetFeed tweets={tweets} />
+            <TweetFeed  backgroundColor={backgroundColor} textColor={textColor} tweets={tweets} />
         </Grid>
     )
 }
