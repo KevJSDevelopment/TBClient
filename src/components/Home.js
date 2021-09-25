@@ -23,8 +23,7 @@ const Home = ({ textColor, backgroundColor }) => {
 
     return (
         <Grid item xs={12} >
-            <HomeHeader textColor={textColor} />
-            <br/>
+            <HomeHeader textColor={textColor} tweets={tweets} setTweets={setTweets} />
             <TweetFeed  backgroundColor={backgroundColor} textColor={textColor} tweets={tweets} />
         </Grid>
     )

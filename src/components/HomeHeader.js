@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid'
-import { Avatar, Button, IconButton, TextField, Typography } from '@mui/material'
+import { Avatar, Button, IconButton, Input, TextField, Typography } from '@mui/material'
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import GifOutlinedIcon from '@mui/icons-material/GifOutlined';
@@ -8,7 +8,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 
-const HomeHeader = ({ textColor }) => {
+const HomeHeader = ({ textColor, tweets, setTweets }) => {
 
     const [tweetDisabled, setTweetDisabled] = useState(true)
     const [user, setUser] = useState(null)
@@ -30,15 +30,28 @@ const HomeHeader = ({ textColor }) => {
 
     }
 
+    const checkFile = (e) => {
+        const file = e.target.files[0]
+    }
+
     const sendTweet = async () => {
+        const formData = new FormData();
         const message = document.getElementById("tweet-message").value
+        const imagedata = document.getElementById('icon-image-file').files[0];
+        formData.append("message", message);
+        formData.append("files", imagedata);
 
         const meta = {
             method: "POST",
-
+            body: formData
         }
 
-        const res = await fetch("https://localhost:5001/poketwitter/work")
+        const res = await fetch(`https://localhost:5001/poketwitter/${user.username}`, meta)
+        const data = await res.json()
+
+        const newTweetFeed = [data, ... tweets]
+
+        setTweets(newTweetFeed)
     }
 
     useEffect(() => {
@@ -72,36 +85,51 @@ const HomeHeader = ({ textColor }) => {
                 </Grid>
             </Grid>
             <Grid item xs={12}>
-                <Grid container columnGap={0}>
+                <Grid container>
                     <Grid item xs={1}>
                         
                     </Grid>
                     <Grid item xs={5}>
                         <Grid container columnSpacing={5} >
                             <Grid item xs={1}>
-                                <IconButton color="primary" >
-                                    <ImageOutlinedIcon fontSize="medium" />
-                                </IconButton>
+                                <label htmlFor="icon-image-file" onChange={(e) => checkFile(e)}>
+                                    <IconButton color="primary" aria-label="upload picture" component="span">
+                                        <ImageOutlinedIcon fontSize="medium" />
+                                    </IconButton>
+                                    <Input accept="image/*" id="icon-image-file" onChange={(e) => checkFile(e)} type="file" />
+                                </label>
                             </Grid>
                             <Grid item  xs={1}>
-                                <IconButton color="primary" >
+                                <label htmlFor="icon-gif-file">
+                                    <IconButton color="primary" >
                                     <GifOutlinedIcon fontSize="small" style={{ border: "2px solid #1DA1F2", borderRadius: "5px 5px 5px 5px"}} />
                                 </IconButton>
+                                    <Input accept="image/*" id="icon-gif-file" type="file" />
+                                </label>
                             </Grid>
                             <Grid item xs={1}>
-                                <IconButton color="primary" >
-                                    <BarChartIcon fontSize="medium" />
-                                </IconButton>
+                                <label htmlFor="icon-chart-file">
+                                    <IconButton color="primary" >
+                                        <BarChartIcon fontSize="medium" />
+                                    </IconButton>
+                                    <Input accept="image/*" id="icon-chart-file" type="file" />
+                                </label>
                             </Grid>
                             <Grid item xs={1}>
-                                <IconButton color="primary" >
-                                    <SentimentSatisfiedOutlinedIcon fontSize="medium" />
-                                </IconButton>
+                                <label htmlFor="icon-emoji-file">
+                                    <IconButton color="primary" >
+                                        <SentimentSatisfiedOutlinedIcon fontSize="medium" />
+                                    </IconButton>
+                                    <Input accept="image/*" id="icon-emoji-file" type="file" />
+                                </label>
                             </Grid>
-                            <Grid item xs={4}>
-                                <IconButton color="primary" >
-                                    <EventOutlinedIcon fontSize="medium" />
-                                </IconButton>
+                            <Grid item xs={1}>
+                                <label htmlFor="icon-calendar-file">
+                                    <IconButton color="primary" >
+                                        <EventOutlinedIcon fontSize="medium" />
+                                    </IconButton>
+                                    <Input accept="image/*" id="icon-calendar-file"  type="file" />
+                                </label>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -110,7 +138,6 @@ const HomeHeader = ({ textColor }) => {
                             Tweet
                         </Button>
                     </Grid>
-                    
                 </Grid>
             </Grid>
         </Grid>

@@ -161,6 +161,37 @@ p.home-text {
     font-size: 1.25rem !important;
 }
 
+/* Tweet message text */
 .MuiTypography-root.MuiTypography-inherit.css-37jdci-MuiTypography-root.tweet-body {
     font-size: 18px !important;
+}
+
+/* input tag for image/gif buttons */
+.css-iar8m1-MuiInputBase-root-MuiInput-root {
+    /* height: 0; */
+}
+
+.options-button {
+    float: right;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    margin-right: 2% !important;
+    width: min-content !important;
+    height: min-content !important;
+}
+
+.options-text {
+    position: relative;
+    top: 20%;
+    transform: translateY(-15%);
+    font-weight: 600 !important;
+    color:rgb(87, 87, 87) !important;
+}
+
+.css-3bmhjh-MuiPaper-root-MuiPopover-paper {
+    width: 10% !important;
+}
+
+.css-1yu1pm6-MuiButtonBase-root-MuiButton-root {
+    width: 100% !important;
 }
