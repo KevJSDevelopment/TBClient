@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid'
-import { badgeClasses, Button, TextField, Typography } from '@mui/material'
 import HomeHeader from './HomeHeader'
 import TweetFeed from './TweetFeed'
 

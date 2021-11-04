@@ -1,6 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .App {
     height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.login-page {
+    background-color: #141d26;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.login-info-container {
+    height: 100%;
+}
+
+.login-info {
+    margin-left: 2.5% !important;
+    margin-right: 2.5% !important;
+}
+
+.login-icon {
+    margin-top: 20% !important;
+}
+
+.login-header {
+    font-size: 72px;
+    font-weight: bolder; 
+    font-family: monospace;
+}
+
+.login-subheader {
+    font-size: 36px;
+    font-weight: bolder;
+    font-family: monospace;
+}
+
+.login-field {
+    width: 100%;
 }
 
 .button {
@@ -12,6 +52,26 @@ button.tweet {
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
+    height: 55px;
+    color: white;
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+}
+
+button.sign-up {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    height: 55px;
+    color: #1DA1F2;
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+}
+
+button.login {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
     height: 55px;
     color: white;
     font-weight: 600 !important;
@@ -107,6 +167,11 @@ p.home-text {
 .MuiGrid-spacing-xs-2 {
     width: 100% !important;
     margin: 0 !important;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
 }
 
 .tweet-image {

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react"
-import Grid from '@mui/material/Grid'
-import Nav from "./components/Nav"
-import Home from "./components/Home"
-import Discover from "./components/Discover"
 import './styles/app.css';
+import MainContainer from "./containers/MainContainer"
+import Login from "./components/Login";
 
 
 const App = () => {
   
   const [background, setBackground] = useState(false)
   const [backgroundColor, setBackgroundColor] = useState("white")
+  const [user, setUser] = useState(false)
+
 
   // const meta = {
   //   method: "POST",
@@ -38,24 +38,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Grid container spacing={1}>
-          <Grid item className="Nav" xs={4}>
-            <Grid container>
-              <Grid item xs={7} />
-              <Nav background={background} textColor={textColor} setBackground={setBackground} />
-            </Grid>
-          </Grid>
-          <Grid item xs={4}>
-            <Grid container>
-              <Home textColor={textColor} backgroundColor={backgroundColor} />
-            </Grid>
-          </Grid>
-          <Grid item className="Discover" xs={4}>
-            <Grid container>
-              <Discover textColor={textColor} />
-            </Grid>
-          </Grid>
-      </Grid>
+      {user ? <MainContainer textColor={textColor} background={background} setBackground={setBackground} backgroundColor={backgroundColor}/> : <Login setUser={setUser} />}
     </div>
   );
 }
