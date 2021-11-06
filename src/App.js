@@ -36,9 +36,15 @@ const App = () => {
     }      
   }, [background])
 
+  useEffect(() => {
+    if(sessionStorage.getItem("user")){
+      setUser(JSON.parse(sessionStorage.getItem("user")))
+    }
+  }, [])
+
   return (
     <div className="App">
-      {user ? <MainContainer textColor={textColor} background={background} setBackground={setBackground} backgroundColor={backgroundColor}/> : <Login setUser={setUser} />}
+      {user ? <MainContainer user={user} textColor={textColor} background={background} setBackground={setBackground} backgroundColor={backgroundColor}/> : <Login setUser={setUser} />}
     </div>
   );
 }

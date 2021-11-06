@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid'
-import { Avatar, Button, IconButton, Input, TextField, Typography } from '@mui/material'
+import { Avatar, Button, IconButton, TextField, Typography } from '@mui/material'
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import GifOutlinedIcon from '@mui/icons-material/GifOutlined';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
+import { styled } from '@mui/system';
 
-const HomeHeader = ({ textColor, tweets, setTweets }) => {
+const HomeHeader = ({ textColor, tweets, setTweets, user }) => {
+
+    const Input = styled('input')({
+        display: 'none',
+    });
 
     const [tweetDisabled, setTweetDisabled] = useState(true)
-    const [user, setUser] = useState(null)
-
-    const getTweetUser = async () => {
-        const res = await fetch("https://localhost:5001/poketwitter/tweets/3")
-        const data = await res.json()
-
-       setUser(data)
-    }
 
     const checkText = (value) => {
 
@@ -28,10 +25,6 @@ const HomeHeader = ({ textColor, tweets, setTweets }) => {
 
         else setTweetDisabled(true)
 
-    }
-
-    const checkFile = (e) => {
-        const file = e.target.files[0]
     }
 
     const sendTweet = async () => {
@@ -49,14 +42,10 @@ const HomeHeader = ({ textColor, tweets, setTweets }) => {
         const res = await fetch(`https://localhost:5001/poketwitter/${user.username}`, meta)
         const data = await res.json()
 
-        const newTweetFeed = [data, ... tweets]
+        const newTweetFeed = [data, ...tweets]
 
         setTweets(newTweetFeed)
     }
-
-    useEffect(() => {
-        getTweetUser()
-    }, [])
 
     return (
         <Grid container spacing={2}>
@@ -77,7 +66,7 @@ const HomeHeader = ({ textColor, tweets, setTweets }) => {
             <Grid item xs={12}>
                 <Grid container alignItems="center" spacing={1}>
                     <Grid item xs={1}>
-                        {user ? <Avatar variant="circular" sx={{ width: 48, height: 48}} src={`data:image/jpg;base64, ${user.imageFiles}`} /> : null}
+                        {user ? <Avatar variant="circular" sx={{ width: 56, height: 56}} src={`data:image/jpg;base64, ${user.imageFiles}`} /> : null}
                     </Grid>
                     <Grid item xs={10}>
                         <TextField id="tweet-message" className="tweet-text" onChange={(e) => checkText(e.target.value)} placeholder="What's Happening?" InputLabelProps={{style: { color: textColor } }} variant="standard" />
@@ -92,11 +81,11 @@ const HomeHeader = ({ textColor, tweets, setTweets }) => {
                     <Grid item xs={5}>
                         <Grid container columnSpacing={5} >
                             <Grid item xs={1}>
-                                <label htmlFor="icon-image-file" onChange={(e) => checkFile(e)}>
+                                <label htmlFor="icon-image-file">
                                     <IconButton color="primary" aria-label="upload picture" component="span">
                                         <ImageOutlinedIcon fontSize="medium" />
                                     </IconButton>
-                                    <Input accept="image/*" id="icon-image-file" onChange={(e) => checkFile(e)} type="file" />
+                                    <Input accept="image/*" id="icon-image-file" type="file" />
                                 </label>
                             </Grid>
                             <Grid item  xs={1}>

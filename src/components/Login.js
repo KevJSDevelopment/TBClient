@@ -1,31 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Grid from '@mui/material/Grid'
 import logo from '../images/Twitter-login-photo.PNG'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import { Button, TextField } from '@mui/material'
+import SignUpModal from './SignUpModal'
 const Login = ({ setUser }) => {
+
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => setOpen(true);
 
     const loginUser = async () => {
 
         const username = document.getElementById("username-field").value
         const password = document.getElementById("password-field").value
 
-        const res = await fetch("http://localhost:5000/login")
-        const data = await res.json()
+        const meta = {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ username: username, password: password})
+        }
 
-        setUser(data)
+
+        const res = await fetch("https://localhost:5001/login", meta);
+        const data = await res.json();
+
+        if(data.username){
+            sessionStorage.setItem("user", JSON.stringify(data))
+            setUser(data);
+        }
+        else {
+            if(data.errors){
+                let response = ""
+                for (const key in data.errors) {
+                    response += data.errors[key]
+                }
+                alert(response)
+            }
+            else{
+                alert(data.error)
+            }
+        }
     }
 
-    const signUp = async () => {
-
-        const username = document.getElementById("username-field").value
-        const password = document.getElementById("password-field").value
-
-        const res = await fetch("http://localhost:5000/signup")
-        const data = await res.json()
-
-        setUser(data)
-    }
 
     return (
         <Grid container spacing={0} className="login-page">
@@ -49,7 +66,7 @@ const Login = ({ setUser }) => {
                                 <TextField InputLabelProps={{style: { color: '#fff' }}} className="login-field" label="Username" id="username-field" />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField InputLabelProps={{style: { color: '#fff' }}} className="login-field" label="Password" id="password-field"/>
+                                <TextField InputLabelProps={{style: { color: '#fff' }}} type="password" className="login-field" label="Password" id="password-field"/>
                             </Grid>
                             <Grid item xs={12}>
                                 <Button className="button login" variant="contained" color="primary" onClick={loginUser}>
@@ -57,7 +74,7 @@ const Login = ({ setUser }) => {
                                 </Button> 
                             </Grid>
                             <Grid item xs={12}>
-                                <Button className="button sign-up" variant="contained" color="secondary" onClick={signUp}>
+                                <Button className="button sign-up" variant="contained" color="secondary" onClick={handleOpen}>
                                     Sign up
                                 </Button> 
                             </Grid>
@@ -65,6 +82,7 @@ const Login = ({ setUser }) => {
                     </Grid>
                 </Grid>
             </Grid>
+            <SignUpModal setUser={setUser} setOpen={setOpen} open={open}/>
         </Grid>
     )
 }

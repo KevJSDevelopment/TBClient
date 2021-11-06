@@ -3,11 +3,11 @@ import Grid from '@mui/material/Grid'
 import HomeHeader from './HomeHeader'
 import TweetFeed from './TweetFeed'
 
-const Home = ({ textColor, backgroundColor }) => {
+const Home = ({ textColor, backgroundColor, user }) => {
 
     const [tweets, setTweets] = useState([])
 
-    const url = "https://localhost:5001/tweets"
+    const url = `https://localhost:5001/home/${user.username}`
 
     const getTweets = async () => {
         const res = await fetch(url)
@@ -22,8 +22,8 @@ const Home = ({ textColor, backgroundColor }) => {
 
     return (
         <Grid item xs={12} >
-            <HomeHeader textColor={textColor} tweets={tweets} setTweets={setTweets} />
-            <TweetFeed  backgroundColor={backgroundColor} textColor={textColor} tweets={tweets} />
+            <HomeHeader user={user} textColor={textColor} tweets={tweets} setTweets={setTweets} />
+            <TweetFeed getTweets={getTweets} backgroundColor={backgroundColor} textColor={textColor} tweets={tweets} />
         </Grid>
     )
 }

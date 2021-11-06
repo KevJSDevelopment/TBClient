@@ -8,7 +8,7 @@ import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-const TweetContainer = ({ tweet, textColor, backgroundColor }) => {
+const TweetContainer = ({ tweet, textColor, backgroundColor, getTweets}) => {
 
     const [user, setUser] = useState(null)
     const [anchorEl, setAnchorEl] = useState(null);
@@ -29,7 +29,7 @@ const TweetContainer = ({ tweet, textColor, backgroundColor }) => {
     };
 
     const deleteTweet = async () => {
-        const res = await fetch(`https://localhost:5001/poketwitter/tweets/${tweet.id}`, { method: 'DELETE' })
+        const res = await fetch(`https://localhost:5001/poketwitter/tweets/${tweet.tweetId}`, { method: 'DELETE' })
     }
 
     const open = Boolean(anchorEl);
@@ -45,7 +45,7 @@ const TweetContainer = ({ tweet, textColor, backgroundColor }) => {
                 <Grid item xs={12}>
                     <Grid container spacing={2}>
                         <Grid item xs={1}>
-                            {user ? <Avatar src={`data:image/jpg;base64, ${user.imageFiles}`} /> : null}
+                            {user ? <Avatar src={`data:image/jpg;base64, ${user.imageFiles}`} sx={{ width: 56, height: 56}} /> : null}
                         </Grid>
                         <Grid item xs={11}>
                             <Grid container >
