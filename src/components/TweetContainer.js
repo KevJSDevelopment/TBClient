@@ -7,17 +7,22 @@ import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 
-const TweetContainer = ({ tweet, textColor, backgroundColor, getTweets}) => {
+const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweets, getTweets, index}) => {
 
-    const [user, setUser] = useState(null)
+    const [tweetUser, setUser] = useState(null);
     const [anchorEl, setAnchorEl] = useState(null);
+    const [tweetIsLikedByUser, setTweetIsLikedByUser] = useState(false)
+    const [likes, setLikes] = useState([])
+    const [tweetIsRetweetedByUser, setTweetIsRetweetedByUser] = useState(false)
+    const [retweets, setRetweets] = useState([])
 
     const getTweetUser = async () => {
-        const res = await fetch(`https://localhost:5001/poketwitter/tweets/${tweet.userId}`)
-        const data = await res.json()
+        const res = await fetch(`https://localhost:5001/poketwitter/tweets/${tweet.userId}`);
+        const data = await res.json();
 
-       setUser(data)
+       setUser(data);
     }
 
     const handleClick = (event) => {
@@ -28,38 +33,139 @@ const TweetContainer = ({ tweet, textColor, backgroundColor, getTweets}) => {
         setAnchorEl(null);
     };
 
-    const deleteTweet = async () => {
-        const res = await fetch(`https://localhost:5001/poketwitter/tweets/${tweet.tweetId}`, { method: 'DELETE' })
+    const handleLike = async () => {
+
+        const meta = { 
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ userId: tweet.userId, tweetId: tweet.tweetId})
+        }
+
+        await fetch(`https://localhost:5001/poketwitter/liketweet/${loggedInUser.userId}`, meta);
+
+        getLikes()
+        checkLike()
     }
+
+    const checkLike = async () => {
+        const meta = { 
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ userId: tweet.userId, tweetId: tweet.tweetId})
+        }
+        const res = await fetch(`https://localhost:5001/poketwitter/checklike/${loggedInUser.userId}`, meta);
+
+        const data = await res.json()
+
+        if(!data.Status){
+            setTweetIsLikedByUser(true)
+        }
+        else if(data.Status == 204){
+            setTweetIsLikedByUser(false)
+        }
+        else {
+            alert(data.error)
+        }
+
+    }
+
+    const getLikes = async () => {
+        const res = await fetch(`https://localhost:5001/poketwitter/likes/${tweet.tweetId}`);
+
+        const data = await res.json()
+
+        setLikes(data)
+    }
+
+
+    const handleRetweet = async () => {
+
+        const meta = { 
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ userId: tweet.userId, tweetId: tweet.tweetId})
+        }
+
+        await fetch(`https://localhost:5001/poketwitter/retweets/${loggedInUser.userId}`, meta);
+
+        checkRetweet()
+        getRetweets()
+    }
+
+    const checkRetweet = async () => {
+        const meta = { 
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ userId: tweet.userId, tweetId: tweet.tweetId})
+        }
+        const res = await fetch(`https://localhost:5001/poketwitter/checkretweet/${loggedInUser.userId}`, meta);
+
+        const data = await res.json()
+
+        console.log(data.Status)
+
+        if(!data.Status){
+            setTweetIsRetweetedByUser(true)
+        }
+        else if(data.Status == 204){
+            setTweetIsRetweetedByUser(false)
+        }
+        else {
+            alert(data.error)
+        }
+
+    }
+
+    const getRetweets = async () => {
+        const res = await fetch(`https://localhost:5001/poketwitter/retweets/${tweet.tweetId}`);
+
+        const data = await res.json()
+
+        setRetweets(data)
+    }
+
+    const deleteTweet = async () => {
+        const res = await fetch(`https://localhost:5001/poketwitter/tweets/${tweet.tweetId}`, { method: 'DELETE' });
+
+        getTweets();
+    };
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
     useEffect(() => {
         getTweetUser()
+    }, [tweets])
+
+    useEffect(() => {
+        checkLike()
+        checkRetweet()
+        getLikes()
+        getRetweets()
     }, [])
 
+
     return (
-        <Card id={`tweet-${tweet.id}`} className="tweet-card" elevation={0} style={{backgroundColor: backgroundColor}}>
+        <Card id={`tweet-${tweet.id}`} className={index == 0 ? "tweet-card-0" : "tweet-card"} elevation={0} style={{backgroundColor: backgroundColor}}>
             <Grid container>
                 <Grid item xs={12}>
                     <Grid container spacing={2}>
                         <Grid item xs={1}>
-                            {user ? <Avatar src={`data:image/jpg;base64, ${user.imageFiles}`} sx={{ width: 56, height: 56}} /> : null}
+                            {tweetUser ? <Avatar src={`data:image/jpg;base64, ${tweetUser.imageFiles}`} sx={{ width: 56, height: 56}} /> : null}
                         </Grid>
                         <Grid item xs={11}>
                             <Grid container >
                                 <Grid item xs={6}>
-                                    {user ? 
+                                    {tweetUser ? 
                                         <div className="signature" > 
                                             <Typography color={textColor} variant="inherit" className="display-name"> 
-                                                {user.displayName} 
+                                                {tweetUser.displayName} 
                                             </Typography> 
                                             <Typography variant="inherit" id="at-sign">
                                                 @
                                             </Typography>
                                             <Typography variant="inherit" className="user-name">
-                                                {user.username} 
+                                                {tweetUser.username} 
                                             </Typography>
                                         </div>
                                         : null}
@@ -92,22 +198,51 @@ const TweetContainer = ({ tweet, textColor, backgroundColor, getTweets}) => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Grid container>
-                                        <Grid item xs={3}>
+                                        <Grid item xs={2}>
+                                            {/* <IconButton >
+                                                <CatchingPokemonIcon fontSize="small" />
+                                            </IconButton> */}
+                                        </Grid>
+                                        <Grid item xs={2}>
                                             <IconButton >
                                                 <ModeCommentOutlinedIcon fontSize="small" />
                                             </IconButton>
                                         </Grid>
-                                        <Grid item xs={3}>
-                                            <IconButton >
-                                                <RepeatRoundedIcon fontSize="small" />
-                                            </IconButton>
+                                        <Grid item xs={2}>
+                                            {tweetIsRetweetedByUser ? 
+                                                <IconButton onClick={handleRetweet}>
+                                                    <RepeatRoundedIcon style={{fill: "lightseagreen"}} fontSize="small" />
+                                                    <Typography variant="tweetInteractions" color="lightseagreen" >
+                                                        {retweets.length}
+                                                    </Typography>
+                                                </IconButton>
+                                                :
+                                                <IconButton onClick={handleRetweet}>
+                                                    <RepeatRoundedIcon fontSize="small" />
+                                                    <Typography variant="tweetInteractions" >
+                                                        {retweets.length !== 0 ? retweets.length : null}
+                                                    </Typography>
+                                                </IconButton>
+                                            }
                                         </Grid>
-                                        <Grid item xs={3}>
-                                            <IconButton >
-                                                <FavoriteBorderIcon fontSize="small" />
-                                            </IconButton>
+                                        <Grid item xs={2}>
+                                                {tweetIsLikedByUser ? 
+                                                    <IconButton onClick={handleLike}>
+                                                        <FavoriteIcon style={{fill: "#f50057"}} fontSize="small"  /> 
+                                                        <Typography variant="tweetInteractions" color="#f50057" >
+                                                            {likes.length}
+                                                        </Typography>
+                                                    </IconButton>
+                                                    : 
+                                                    <IconButton onClick={handleLike}>
+                                                        <FavoriteBorderIcon fontSize="small" />
+                                                        <Typography variant="tweetInteractions" >
+                                                            {likes.length !== 0 ? likes.length : null}
+                                                        </Typography>
+                                                    </IconButton>
+                                                }
                                         </Grid>
-                                        <Grid item xs={3}>
+                                        <Grid item xs={2}>
                                             <IconButton >
                                                 <IosShareOutlinedIcon fontSize="small" />
                                             </IconButton>

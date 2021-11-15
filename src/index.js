@@ -15,6 +15,9 @@ const theme = createTheme({
     }
   },
   typography: {
+    tweetInteractions: {
+      fontSize: "12px"
+    },
     button: {
       fontSize: "1rem",
       fontWeight: 400,

@@ -9,7 +9,7 @@ import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfi
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import { styled } from '@mui/system';
 
-const HomeHeader = ({ textColor, tweets, setTweets, user }) => {
+const HomeHeader = ({ textColor, loggedInUser, getTweets }) => {
 
     const Input = styled('input')({
         display: 'none',
@@ -39,16 +39,14 @@ const HomeHeader = ({ textColor, tweets, setTweets, user }) => {
             body: formData
         }
 
-        const res = await fetch(`https://localhost:5001/poketwitter/${user.username}`, meta)
-        const data = await res.json()
+        const res = await fetch(`https://localhost:5001/poketwitter/${loggedInUser.username}`, meta)
+        await res.json()
 
-        const newTweetFeed = [data, ...tweets]
-
-        setTweets(newTweetFeed)
+        getTweets()
     }
 
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} className="home-header">
             <Grid item className="home-title" xs={12}>
                 <Grid container>
                     <Grid item xs={6}>
@@ -66,7 +64,7 @@ const HomeHeader = ({ textColor, tweets, setTweets, user }) => {
             <Grid item xs={12}>
                 <Grid container alignItems="center" spacing={1}>
                     <Grid item xs={1}>
-                        {user ? <Avatar variant="circular" sx={{ width: 56, height: 56}} src={`data:image/jpg;base64, ${user.imageFiles}`} /> : null}
+                        {loggedInUser ? <Avatar variant="circular" sx={{ width: 56, height: 56}} src={`data:image/jpg;base64, ${loggedInUser.imageFiles}`} /> : null}
                     </Grid>
                     <Grid item xs={10}>
                         <TextField id="tweet-message" className="tweet-text" onChange={(e) => checkText(e.target.value)} placeholder="What's Happening?" InputLabelProps={{style: { color: textColor } }} variant="standard" />

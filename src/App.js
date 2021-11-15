@@ -8,7 +8,7 @@ const App = () => {
   
   const [background, setBackground] = useState(false)
   const [backgroundColor, setBackgroundColor] = useState("white")
-  const [user, setUser] = useState(false)
+  const [loggedInUser, setUser] = useState(false)
 
 
   // const meta = {
@@ -44,7 +44,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {user ? <MainContainer user={user} textColor={textColor} background={background} setBackground={setBackground} backgroundColor={backgroundColor}/> : <Login setUser={setUser} />}
+      {loggedInUser ? <MainContainer loggedInUser={loggedInUser} textColor={textColor} background={background} setBackground={setBackground} backgroundColor={backgroundColor}/> : <Login setUser={setUser} />}
     </div>
   );
 }

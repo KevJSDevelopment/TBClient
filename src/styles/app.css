@@ -150,6 +150,10 @@ p.home-text {
     text-transform: capitalize !important;
 }
 
+.home-header {
+    border-bottom: 2px solid rgb(233, 232, 232);;
+}
+
 .home-title {
     border-bottom: 2px solid rgb(233, 232, 232);
 }
@@ -182,7 +186,17 @@ p.home-text {
     padding-bottom: 1% !important;
 }
 
+.tweet-card-0 {
+    border-radius: 0px 0px 0px 0px !important;
+    padding-bottom: 1% !important;
+}
+
 .tweet-card:hover {
+    background-color: whitesmoke !important;
+    cursor: pointer;
+}
+
+.tweet-card-0:hover {
     background-color: whitesmoke !important;
     cursor: pointer;
 }

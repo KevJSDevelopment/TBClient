@@ -4,7 +4,7 @@ import Nav from "../components/Nav"
 import Home from "../components/Home"
 import Discover from "../components/Discover"
 
-const MainContainer = ({ textColor, background, setBackground, backgroundColor, user}) => {
+const MainContainer = ({ textColor, background, setBackground, backgroundColor, loggedInUser}) => {
     return (
         <Grid container spacing={1}>
           <Grid item className="Nav" xs={4}>
@@ -15,7 +15,7 @@ const MainContainer = ({ textColor, background, setBackground, backgroundColor, 
           </Grid>
           <Grid item xs={4}>
             <Grid container>
-              <Home user={user} textColor={textColor} backgroundColor={backgroundColor} />
+              <Home loggedInUser={loggedInUser} textColor={textColor} backgroundColor={backgroundColor} />
             </Grid>
           </Grid>
           <Grid item className="Discover" xs={4}>
