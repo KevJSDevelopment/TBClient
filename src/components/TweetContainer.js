@@ -8,6 +8,7 @@ import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
+import { color } from '@mui/system';
 
 const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweets, getTweets, index}) => {
 
@@ -17,6 +18,7 @@ const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweet
     const [likes, setLikes] = useState([])
     const [tweetIsRetweetedByUser, setTweetIsRetweetedByUser] = useState(false)
     const [retweets, setRetweets] = useState([])
+    const [quoteTweets, setQuoteTweets] = useState([])
 
     const getTweetUser = async () => {
         const res = await fetch(`https://localhost:5001/poketwitter/tweets/${tweet.userId}`);
@@ -124,6 +126,18 @@ const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweet
         setRetweets(data)
     }
 
+    const handleQuoteTweet = () => {
+        
+    }
+
+    const getQuoteTweets = async () => {
+        const res = await fetch(`https://localhost:5001/poketwitter/quotetweets/${tweet.tweetId}`);
+
+        const data = await res.json()
+
+        setQuoteTweets(data)
+    }
+
     const deleteTweet = async () => {
         const res = await fetch(`https://localhost:5001/poketwitter/tweets/${tweet.tweetId}`, { method: 'DELETE' });
 
@@ -142,6 +156,7 @@ const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweet
         checkRetweet()
         getLikes()
         getRetweets()
+        getQuoteTweets()
     }, [])
 
 
@@ -204,8 +219,11 @@ const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweet
                                             </IconButton> */}
                                         </Grid>
                                         <Grid item xs={2}>
-                                            <IconButton >
+                                            <IconButton onClick={handleQuoteTweet} sx={{":hover": {color: "#1DA1F2"}}} >
                                                 <ModeCommentOutlinedIcon fontSize="small" />
+                                                <Typography variant="tweetInteractions" >
+                                                        {quoteTweets.length !== 0 ? quoteTweets.length : null}
+                                                </Typography>
                                             </IconButton>
                                         </Grid>
                                         <Grid item xs={2}>
@@ -213,11 +231,11 @@ const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweet
                                                 <IconButton onClick={handleRetweet}>
                                                     <RepeatRoundedIcon style={{fill: "lightseagreen"}} fontSize="small" />
                                                     <Typography variant="tweetInteractions" color="lightseagreen" >
-                                                        {retweets.length}
+                                                        {retweets.length !== 0 ? retweets.length : null}
                                                     </Typography>
                                                 </IconButton>
                                                 :
-                                                <IconButton onClick={handleRetweet}>
+                                                <IconButton sx={{":hover": {color: "lightseagreen"}}} onClick={handleRetweet}>
                                                     <RepeatRoundedIcon fontSize="small" />
                                                     <Typography variant="tweetInteractions" >
                                                         {retweets.length !== 0 ? retweets.length : null}
@@ -234,7 +252,7 @@ const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweet
                                                         </Typography>
                                                     </IconButton>
                                                     : 
-                                                    <IconButton onClick={handleLike}>
+                                                    <IconButton sx={{":hover": {color: "#f50057"}}} onClick={handleLike}>
                                                         <FavoriteBorderIcon fontSize="small" />
                                                         <Typography variant="tweetInteractions" >
                                                             {likes.length !== 0 ? likes.length : null}
