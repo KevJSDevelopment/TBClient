@@ -46,8 +46,8 @@ const HomeHeader = ({ textColor, loggedInUser, getTweets }) => {
     }
 
     return (
-        <Grid container spacing={2} className="home-header">
-            <Grid item className="home-title" xs={12}>
+        <Grid container spacing={2} className={textColor == "white" ? "home-header" : "dark-home-header"}>
+            <Grid item className={textColor == "white" ? "home-title" : "dark-home-title"} xs={12}>
                 <Grid container>
                     <Grid item xs={6}>
                         <Typography variant="inherit" color={textColor} className="home-text">
@@ -56,7 +56,7 @@ const HomeHeader = ({ textColor, loggedInUser, getTweets }) => {
                     </Grid>
                     <Grid item xs={6}>
                         <IconButton className="star-icon" >
-                            <AutoAwesomeOutlinedIcon />
+                            <AutoAwesomeOutlinedIcon color={textColor} fontSize="medium"/>
                         </IconButton>
                     </Grid>
                 </Grid>
@@ -67,7 +67,7 @@ const HomeHeader = ({ textColor, loggedInUser, getTweets }) => {
                         {loggedInUser ? <Avatar variant="circular" sx={{ width: 56, height: 56}} src={`data:image/jpg;base64, ${loggedInUser.imageFiles}`} /> : null}
                     </Grid>
                     <Grid item xs={10}>
-                        <TextField id="tweet-message" className="tweet-text" onChange={(e) => checkText(e.target.value)} placeholder="What's Happening?" InputLabelProps={{style: { color: textColor } }} variant="standard" />
+                        <TextField id="tweet-message" className="tweet-text" onChange={(e) => checkText(e.target.value)} placeholder="What's Happening?" variant="standard" />
                     </Grid>
                 </Grid>
             </Grid>

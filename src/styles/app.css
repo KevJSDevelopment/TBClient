@@ -151,24 +151,46 @@ p.home-text {
 }
 
 .home-header {
-    border-bottom: 2px solid rgb(233, 232, 232);;
+    border-bottom: 1px solid rgb(233, 233, 233);;
 }
 
 .home-title {
-    border-bottom: 2px solid rgb(233, 232, 232);
+    border-bottom: 1px solid rgb(233, 233, 233);
 }
 
 .tweet-text {
     width: 100%;
 }
 
-.Nav {
-    border-right: 2px solid rgb(233, 232, 232);
+.nav {
+    border-right: 1px solid rgb(233, 233, 233);
     height: 100vh;
 }
 
-.Discover {
-    border-left: 2px solid rgb(233, 232, 232);
+.discover {
+    border-left: 1px solid rgb(233, 233, 233);
+    height: 100vh;
+}
+
+.MuiButton-root {
+    text-transform: capitalize !important;
+}
+
+.dark-home-header {
+border-bottom: 1px solid dimgrey;
+}
+
+.dark-home-title {
+    border-bottom: 1px solid dimgrey;
+}
+
+.dark-nav {
+    border-right: 1px solid dimgrey;
+    height: 100vh;
+}
+
+.dark-discover {
+    border-left: 1px solid dimgrey;
     height: 100vh;
 }
 
@@ -181,12 +203,23 @@ p.home-text {
 }
 
 .tweet-card {
-    border-top: 2px solid rgb(233, 232, 232);
+    border-top: 1px solid rgb(233, 232, 232);
     border-radius: 0px 0px 0px 0px !important;
     padding-bottom: 1% !important;
 }
 
 .tweet-card-0 {
+    border-radius: 0px 0px 0px 0px !important;
+    padding-bottom: 1% !important;
+}
+
+.dark-tweet-card {
+    border-top: 1px solid rgb(110, 110, 110);;
+    border-radius: 0px 0px 0px 0px !important;
+    padding-bottom: 1% !important;
+}
+
+.dark-tweet-card-0 {
     border-radius: 0px 0px 0px 0px !important;
     padding-bottom: 1% !important;
 }
@@ -198,6 +231,16 @@ p.home-text {
 
 .tweet-card-0:hover {
     background-color: whitesmoke !important;
+    cursor: pointer;
+}
+
+.dark-tweet-card:hover {
+    background-color: #1d2935  !important;
+    cursor: pointer;
+}
+
+.dark-tweet-card-0:hover {
+    background-color: #1d2935 !important;
     cursor: pointer;
 }
 

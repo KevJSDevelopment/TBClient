@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Avatar, Button, Card, Grid, Icon, IconButton, makeStyles, Popover, Typography } from '@mui/material'
+import { Avatar, Button, Card, Grid, IconButton, Popover, Typography } from '@mui/material'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import RepeatRoundedIcon from '@mui/icons-material/RepeatRounded';
@@ -127,7 +127,7 @@ const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweet
     }
 
     const handleQuoteTweet = () => {
-        
+
     }
 
     const getQuoteTweets = async () => {
@@ -161,7 +161,7 @@ const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweet
 
 
     return (
-        <Card id={`tweet-${tweet.id}`} className={index == 0 ? "tweet-card-0" : "tweet-card"} elevation={0} style={{backgroundColor: backgroundColor}}>
+        <Card id={`tweet-${tweet.id}`} className={backgroundColor == "white" ? index == 0 ? "tweet-card-0" : "tweet-card" : index == 0 ? "dark-tweet-card-0" : "dark-tweet-card"} elevation={0} style={{backgroundColor: backgroundColor}}>
             <Grid container>
                 <Grid item xs={12}>
                     <Grid container spacing={2}>
@@ -214,12 +214,12 @@ const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweet
                                 <Grid item xs={12}>
                                     <Grid container>
                                         <Grid item xs={2}>
-                                            {/* <IconButton >
+                                            <IconButton sx={backgroundColor == "white" ? {":hover": {color: "violet" }} :  {color:'dimgrey', ":hover": {color: "violet" }}}>
                                                 <CatchingPokemonIcon fontSize="small" />
-                                            </IconButton> */}
+                                            </IconButton>
                                         </Grid>
                                         <Grid item xs={2}>
-                                            <IconButton onClick={handleQuoteTweet} sx={{":hover": {color: "#1DA1F2"}}} >
+                                            <IconButton onClick={handleQuoteTweet} sx={backgroundColor == "white" ? {":hover": {color: "#1DA1F2"}} : {color:'dimgrey', ":hover": {color: "#1DA1F2"}}} >
                                                 <ModeCommentOutlinedIcon fontSize="small" />
                                                 <Typography variant="tweetInteractions" >
                                                         {quoteTweets.length !== 0 ? quoteTweets.length : null}
@@ -228,14 +228,14 @@ const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweet
                                         </Grid>
                                         <Grid item xs={2}>
                                             {tweetIsRetweetedByUser ? 
-                                                <IconButton onClick={handleRetweet}>
-                                                    <RepeatRoundedIcon style={{fill: "lightseagreen"}} fontSize="small" />
+                                                <IconButton sx={{color: "lightseagreen"}} onClick={handleRetweet}>
+                                                    <RepeatRoundedIcon fontSize="small" />
                                                     <Typography variant="tweetInteractions" color="lightseagreen" >
                                                         {retweets.length !== 0 ? retweets.length : null}
                                                     </Typography>
                                                 </IconButton>
                                                 :
-                                                <IconButton sx={{":hover": {color: "lightseagreen"}}} onClick={handleRetweet}>
+                                                <IconButton sx={backgroundColor == "white" ? {":hover": {color: "lightseagreen"}} : {color:'dimgrey', ":hover": {color: "lightseagreen"}}} onClick={handleRetweet}>
                                                     <RepeatRoundedIcon fontSize="small" />
                                                     <Typography variant="tweetInteractions" >
                                                         {retweets.length !== 0 ? retweets.length : null}
@@ -245,14 +245,14 @@ const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweet
                                         </Grid>
                                         <Grid item xs={2}>
                                                 {tweetIsLikedByUser ? 
-                                                    <IconButton onClick={handleLike}>
-                                                        <FavoriteIcon style={{fill: "#f50057"}} fontSize="small"  /> 
+                                                    <IconButton sx={{color: "#f50057"}} onClick={handleLike}>
+                                                        <FavoriteIcon fontSize="small"  /> 
                                                         <Typography variant="tweetInteractions" color="#f50057" >
                                                             {likes.length}
                                                         </Typography>
                                                     </IconButton>
                                                     : 
-                                                    <IconButton sx={{":hover": {color: "#f50057"}}} onClick={handleLike}>
+                                                    <IconButton sx={backgroundColor == "white" ? {":hover": {color: "#f50057"}} : {color:'dimgrey', ":hover": {color: "#f50057"}}} onClick={handleLike}>
                                                         <FavoriteBorderIcon fontSize="small" />
                                                         <Typography variant="tweetInteractions" >
                                                             {likes.length !== 0 ? likes.length : null}
@@ -261,7 +261,7 @@ const TweetContainer = ({ loggedInUser, tweet, textColor, backgroundColor, tweet
                                                 }
                                         </Grid>
                                         <Grid item xs={2}>
-                                            <IconButton >
+                                            <IconButton sx={backgroundColor == "white" ? {":hover": {color: "#1DA1F2"}} : {color:'dimgrey', ":hover": {color: "#1DA1F2"}}} >
                                                 <IosShareOutlinedIcon fontSize="small" />
                                             </IconButton>
                                         </Grid>

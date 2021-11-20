@@ -7,7 +7,7 @@ import Discover from "../components/Discover"
 const MainContainer = ({ textColor, background, setBackground, backgroundColor, loggedInUser}) => {
     return (
         <Grid container spacing={1}>
-          <Grid item className="Nav" xs={4}>
+          <Grid item className={backgroundColor == "white" ? "nav" : "dark-nav"} xs={4}>
             <Grid container>
               <Grid item xs={7} />
               <Nav background={background} textColor={textColor} setBackground={setBackground} />
@@ -18,7 +18,7 @@ const MainContainer = ({ textColor, background, setBackground, backgroundColor, 
               <Home loggedInUser={loggedInUser} textColor={textColor} backgroundColor={backgroundColor} />
             </Grid>
           </Grid>
-          <Grid item className="Discover" xs={4}>
+          <Grid item className={backgroundColor == "white" ? "discover" : "dark-discover"} xs={4}>
             <Grid container>
               <Discover textColor={textColor} />
             </Grid>
