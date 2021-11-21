@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid'
-import HomeHeader from './HomeHeader'
-import TweetFeed from './TweetFeed'
+import HomeHeader from './HomeComponents/HomeHeader'
+import TweetFeed from './HomeComponents/TweetFeed'
 import { CircularProgress, circularProgressClasses, LinearProgress, linearProgressClasses } from '@mui/material'
 import { Box, styled } from '@mui/system'
 
-const Home = ({ textColor, backgroundColor, loggedInUser }) => {
+const Home = ({ handleProfileView, handleViewTweet, textColor, backgroundColor, loggedInUser }) => {
 
     const [tweets, setTweets] = useState([])
     const [loading, setLoading] = useState(false)
@@ -66,7 +66,7 @@ const Home = ({ textColor, backgroundColor, loggedInUser }) => {
     return (
         <Grid item xs={12} >
             <HomeHeader loggedInUser={loggedInUser} getTweets={getTweets} textColor={textColor} />
-            {loading ? <FacebookCircularProgress /> : <TweetFeed loggedInUser={loggedInUser} getTweets={getTweets} backgroundColor={backgroundColor} textColor={textColor} tweets={tweets} />}
+            {loading ? <FacebookCircularProgress /> : <TweetFeed handleProfileView={handleProfileView} handleViewTweet={handleViewTweet} loggedInUser={loggedInUser} getTweets={getTweets} backgroundColor={backgroundColor} textColor={textColor} tweets={tweets} />}
         </Grid>
     )
 }

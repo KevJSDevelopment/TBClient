@@ -3,12 +3,12 @@ import './styles/app.css';
 import MainContainer from "./containers/MainContainer"
 import Login from "./components/Login";
 
-
 const App = () => {
   
   const [background, setBackground] = useState(false)
   const [backgroundColor, setBackgroundColor] = useState("white")
   const [loggedInUser, setUser] = useState(false)
+  const [viewTweet, setViewTweet] = useState(false)
 
 
   // const meta = {
@@ -17,11 +17,11 @@ const App = () => {
   //   body: JSON.stringify({ username: `${name}-${count}`, displayname: `test-${count}`, password: `test-${count}`, imageurl: `test-${count}`})
   // }
   
-  const [textColor, setTextColor] = useState("#000000")
+  const [textColor, setTextColor] = useState("black")
 
   useEffect(() => { 
-      if(!background) setTextColor("#000000")
-      else setTextColor("secondary")
+      if(!background) setTextColor("black")
+      else setTextColor("white")
   }, [background])
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider } from "@mui/material"
+import { BrowserRouter } from "react-router-dom";
 
 
 const theme = createTheme({
@@ -35,11 +36,11 @@ const theme = createTheme({
 })
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter >
     <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

@@ -158,8 +158,28 @@ p.home-text {
     border-bottom: 1px solid rgb(233, 233, 233);
 }
 
+#tweet-message {
+    color: black !important;
+    padding-bottom: 2%;
+}
+
+#dark-tweet-message {
+    color: white !important;
+    padding-bottom: 2%;
+}
+
+#reply-message {
+    color: black !important;
+    padding-bottom: 2%;
+}
+
+#dark-reply-message {
+    color: white !important;
+    padding-bottom: 2%;
+}
+
 .tweet-text {
-    width: 100%;
+    width: 100% !important;
 }
 
 .nav {
@@ -177,7 +197,7 @@ p.home-text {
 }
 
 .dark-home-header {
-border-bottom: 1px solid dimgrey;
+    border-bottom: 1px solid dimgrey;
 }
 
 .dark-home-title {
