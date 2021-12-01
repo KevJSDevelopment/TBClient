@@ -47,27 +47,13 @@ const HomeHeader = ({ textColor, loggedInUser, getTweets }) => {
 
     return (
         <Grid container spacing={2} className={textColor == "black" ? "home-header" : "dark-home-header"}>
-            <Grid item className={textColor == "black" ? "home-title" : "dark-home-title"} xs={12}>
-                <Grid container>
-                    <Grid item xs={6}>
-                        <Typography variant="inherit" color={textColor} className="home-text">
-                            Home
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <IconButton className="star-icon" >
-                            <AutoAwesomeOutlinedIcon color={textColor} fontSize="medium"/>
-                        </IconButton>
-                    </Grid>
-                </Grid>
-            </Grid>
             <Grid item xs={12}>
                 <Grid container alignItems="center" spacing={1}>
                     <Grid item xs={1}>
                         {loggedInUser ? <Avatar variant="circular" sx={{ width: 56, height: 56}} src={`data:image/jpg;base64, ${loggedInUser.imageFiles}`} /> : null}
                     </Grid>
                     <Grid item xs={10}>
-                        <TextField id={textColor == "black" ? "tweet-message" : "dark-tweet-message"} className="tweet-text" onChange={(e) => checkText(e.target.value)} placeholder="What's Happening?" variant="standard" />
+                        <TextField id={textColor == "black" ? "tweet-message" : "dark-tweet-message"} autoComplete='off' className="tweet-text" onChange={(e) => checkText(e.target.value)} placeholder="What's Happening?" variant="standard" />
                     </Grid>
                 </Grid>
             </Grid>

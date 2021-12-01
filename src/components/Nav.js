@@ -16,12 +16,12 @@ import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
 import PersonIcon from '@mui/icons-material/Person';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-const Nav = ({ background, textColor, setBackground }) => {
+const Nav = ({ background, textColor, setBackground, backgroundColor }) => {
 
 
     return (
-        <Grid item xs={5}>
-            <Grid container spacing={2}>
+        <Grid item xs={5} >
+            <Grid container spacing={2} className="nav-content">
                 <Grid item xs={12}>
                     <IconButton color={background ? 'secondary' :  'primary'} className="iconborder">
                         <TwitterIcon fontSize="large" />
@@ -96,9 +96,9 @@ const Nav = ({ background, textColor, setBackground }) => {
                         </Button>
                 </Grid>
                 <Grid item xs={12}>
-                        <Button sx={background ? {color: 'white'} :  {color:'black'}} className="button tweet" variant="contained" color="primary">
-                            Tweet
-                        </Button> 
+                    <Button sx={background ? {color: 'white'} :  {color:'black'}} className="button tweet" variant="contained" color="primary">
+                        Tweet
+                    </Button> 
                 </Grid>
             </Grid>
         </Grid>

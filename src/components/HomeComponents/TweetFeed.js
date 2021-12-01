@@ -5,7 +5,7 @@ const TweetFeed = ({ handleProfileView, handleViewTweet, loggedInUser, tweets, t
 
     return (
         tweets.map((tweet, index) => {
-            return <TweetContainer handleProfileView={handleProfileView} handleViewTweet={handleViewTweet} loggedInUser={loggedInUser} tweets={tweets} getTweets={getTweets} tweet={tweet} textColor={textColor} backgroundColor={backgroundColor} index={index} key={index} />
+            return <TweetContainer view={false} handleProfileView={handleProfileView} handleViewTweet={handleViewTweet} loggedInUser={loggedInUser} tweets={tweets} getTweets={getTweets} tweet={tweet} textColor={textColor} backgroundColor={backgroundColor} index={index} key={index} />
         })
     )
 }

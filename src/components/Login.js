@@ -63,10 +63,10 @@ const Login = ({ setUser }) => {
                                 Join twitter-battles today.
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField InputLabelProps={{style: { color: '#fff' }}} className="login-field" label="Username" id="username-field" />
+                                <TextField color="primary" InputProps={{style: { color: '#fff' }}} className="login-field" label="Username" id="username-field" />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField InputLabelProps={{style: { color: '#fff' }}} type="password" className="login-field" label="Password" id="password-field"/>
+                                <TextField color="primary" InputProps={{style: { color: '#fff' }}} type="password" className="login-field" label="Password" id="password-field"/>
                             </Grid>
                             <Grid item xs={12}>
                                 <Button className="button login" variant="contained" color="primary" onClick={loginUser}>

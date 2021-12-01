@@ -60,9 +60,7 @@ body {
 }
 
 button.tweet {
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    width: 100%;
     height: 55px;
     color: white;
     font-weight: 600 !important;
@@ -70,6 +68,7 @@ button.tweet {
 }
 
 .button.sign-up {
+    
     width: 40%;
     margin-left: 30%;
     margin-right: 30%;
@@ -114,16 +113,50 @@ button.tweet-2 {
     font-size: 1rem !important;
 }
 
+.view-tweet-count {
+    color: black;
+}
+
+.dark-view-tweet-count {
+    color: white;
+}
+
+.detail-text {
+    color: rgb(110, 110, 110);
+}
+
+.dark-detail-text {
+    color: dimgrey;
+}
+
+.css-mhc70k-MuiGrid-root>.MuiGrid-item {
+    padding-right: 16px;
+}
+
+.view-tweet-section {
+    border-bottom: 1px solid rgb(233, 233, 233);
+    justify-content: center;
+    padding-bottom: 2%;
+}
+
+.dark-view-tweet-section {
+    border-bottom: 1px solid dimgrey;
+    justify-content: center;
+}
+
 p.home-text {
     font-weight: 700 !important;
     font-size: 22px !important;
+    padding: 2%;
+    margin: 2%;
 }
 
 .star-icon {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
     float: right;
-    margin-right: 2% !important;
+    padding: 2% !important;
+    margin: 3% !important;
 }
 
 .bar-icon {
@@ -184,12 +217,19 @@ p.home-text {
 
 .nav {
     border-right: 1px solid rgb(233, 233, 233);
-    height: 100vh;
+}
+
+.nav-content {
+    position: fixed;
+    max-width: 13%;
 }
 
 .discover {
     border-left: 1px solid rgb(233, 233, 233);
-    height: 100vh;
+}
+
+.discover-content {
+    position: fixed;
 }
 
 .MuiButton-root {
@@ -206,12 +246,10 @@ p.home-text {
 
 .dark-nav {
     border-right: 1px solid dimgrey;
-    height: 100vh;
 }
 
 .dark-discover {
     border-left: 1px solid dimgrey;
-    height: 100vh;
 }
 
 .iconborder {
@@ -223,7 +261,7 @@ p.home-text {
 }
 
 .tweet-card {
-    border-top: 1px solid rgb(233, 232, 232);
+    border-top: 1px solid rgb(233, 233, 233);
     border-radius: 0px 0px 0px 0px !important;
     padding-bottom: 1% !important;
 }
@@ -280,8 +318,22 @@ p.home-text {
 
 .tweet-image {
     border-radius: 15px 15px 15px 15px !important;
-    max-width: 600px;
-    min-width: 600px;
+    max-width: 100%;
+    min-width: 95%;
+    max-height: 300px;
+}
+
+.reply-image {
+    border-radius: 15px 15px 15px 15px !important;
+    max-width: 100%;
+    min-width: 90%;
+    max-height: 500px;
+}
+
+.unviewed-reply-image {
+    border-radius: 15px 15px 15px 15px !important;
+    max-width: 100%;
+    min-width: 95%;
     max-height: 300px;
 }
 
@@ -352,7 +404,6 @@ p.home-text {
     font-size: 18px !important;
 }
 
-
 .options-button {
     float: right;
     padding-top: 2px !important;
@@ -367,7 +418,15 @@ p.home-text {
     top: 20%;
     transform: translateY(-15%);
     font-weight: 600 !important;
-    color:rgb(87, 87, 87) !important;
+    color:rgb(110, 110, 110) !important;
+}
+
+.dark-options-text {
+    position: relative;
+    top: 20%;
+    transform: translateY(-15%);
+    font-weight: 600 !important;
+    color:dimgrey !important;
 }
 
 .css-3bmhjh-MuiPaper-root-MuiPopover-paper {

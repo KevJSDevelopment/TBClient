@@ -1,52 +1,39 @@
-import { Grid } from '@mui/material'
+import { Grid, IconButton } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import TweetReply from './ViewTweetComponents/TweetReply'
+import Header from './GlobalComponents/Header'
+import { FacebookCircularProgress } from './GlobalComponents/Loading'
+import ViewReplyContainer from './ViewTweetComponents/ViewReplyContainer'
+import ViewTweetContainer from './ViewTweetComponents/ViewTweetContainer'
+import { useNavigate } from 'react-router'
 
-const ViewTweet = ({viewTweet}) => {
+const ViewTweet = ({viewTweet, handleProfileView, textColor, handleViewTweet, loggedInUser, tweets, getTweets, backgroundColor, loading}) => {
 
     const [replies, setReplies] = useState([])
+    const navigate = useNavigate()
 
     const getReplies = async () => {
-        const res = await fetch(`http://localhost:5000/poketwitter/quotetweets/${viewTweet.tweetId}`)
+        debugger
+        const res = await fetch(`http://localhost:5000/poketwitter/replies/${viewTweet.tweetId}`)
         const data = await res.json()
 
         setReplies(data)
     }
 
     useEffect(() => {
-        getReplies();
-    }, [])
+        if(viewTweet) getReplies();
+    }, [viewTweet])
 
     return (
         <Grid container>
+            <Header text={"Tweet"} textColor={textColor} backButton={true} />
+            {loading ? 
+             <FacebookCircularProgress /> :
             <Grid item xs={12}>
-                <Grid container>
-                    <Grid item xs={12}>
-                        
-                    </Grid>
-                    <Grid item xs={12}>
-                        
-                    </Grid>
-                    <Grid item xs={12}>
-                        
-                    </Grid>
-                    <Grid item xs={12}>
-                        
-                    </Grid>
-                    <Grid item xs={12}>
-                        
-                    </Grid>
-                    <Grid item xs={12}>
-                        
-                    </Grid>
-                    <Grid item xs={12}>
-                        
-                    </Grid>
-                </Grid>
-                {replies.length > 0 ? replies.map(reply => {
-                    return <TweetReply reply={reply}/>
+                <ViewTweetContainer handleProfileView={handleProfileView} handleViewTweet={handleViewTweet} loggedInUser={loggedInUser} tweets={tweets} getTweets={getTweets} tweet={viewTweet} textColor={textColor} backgroundColor={backgroundColor} />
+                {replies.length > 0 ? replies.map((reply,index) => {
+                    return <ViewReplyContainer getTweets={getTweets} handleProfileView={handleProfileView} handleViewTweet={handleViewTweet} backgroundColor={backgroundColor} loggedInUser={loggedInUser} reply={reply} textColor={textColor} key={index} />
                 }) : null}
-            </Grid>
+            </Grid>}
         </Grid>
     )
 }

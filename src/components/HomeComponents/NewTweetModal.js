@@ -9,8 +9,9 @@ import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfi
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/system';
+import { Navigate } from 'react-router';
 
-const NewTweetModal = ({ textColor, loggedInUser, getTweets, tweet, tweetUser }) => {
+const NewTweetModal = ({ getTweets, textColor, loggedInUser, tweet, tweetUser }) => {
 
     const Input = styled('input')({
         display: 'none',
@@ -40,20 +41,17 @@ const NewTweetModal = ({ textColor, loggedInUser, getTweets, tweet, tweetUser })
         const imagedata = document.getElementById('icon-image-file').files[0];
         formData.append("message", message);
         formData.append("files", imagedata);
-        formData.append("tweetId", tweet.tweetId);
-        
+        formData.append("repliedToTweetId", tweet.tweetId);
 
         const meta = {
             method: "POST",
             body: formData
         }
 
-        const res = await fetch(`http://localhost:5000/poketwitter/quotetweet/${tweet.tweetId}`, meta)
-        const data = await res.json()
-
-        debugger
+        await fetch(`https://localhost:5001/poketwitter/${loggedInUser.username}`, meta)
 
         getTweets()
+
     }
 
     return (
