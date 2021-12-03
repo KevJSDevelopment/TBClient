@@ -4,7 +4,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import RepeatRoundedIcon from '@mui/icons-material/RepeatRounded';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
-import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
@@ -14,7 +13,6 @@ import GifOutlinedIcon from '@mui/icons-material/GifOutlined';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
-import { fontSize } from '@mui/system';
 
 const style = {
     position: 'absolute',
@@ -91,7 +89,7 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
         if(!data.Status){
             setTweetIsLikedByUser(true)
         }
-        else if(data.Status == 204){
+        else if(data.Status===204){
             setTweetIsLikedByUser(false)
         }
         else {
@@ -138,7 +136,7 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
         if(!data.Status){
             setTweetIsRetweetedByUser(true)
         }
-        else if(data.Status == 204){
+        else if(data.Status===204){
             setTweetIsRetweetedByUser(false)
         }
         else {
@@ -165,7 +163,7 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
 
     const deleteTweet = async (e) => {
         e.stopPropagation();
-        const res = await fetch(`https://localhost:5001/poketwitter/tweets/${tweet.tweetId}`, { method: 'DELETE' });
+        await fetch(`https://localhost:5001/poketwitter/tweets/${tweet.tweetId}`, { method: 'DELETE' });
 
         getTweets()
     };
@@ -220,14 +218,14 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
                 <Grid item xs={12}>
                     <Grid container spacing={2} >
                         <Grid item xs={1}>
-                            {tweetUser ? <Avatar onClick={(e) => handleProfileView(e, tweetUser)} src={`data:image/jpg;base64, ${tweetUser.imageFiles}`} sx={{ width: 56, height: 56}} /> : null}
+                            {tweetUser ? <Avatar onClick={(e) => handleProfileView(e, tweetUser)} src={`data:image/jpg;base64, ${tweetUser.imageFiles}`} sx={{ width: 56, height: 56, ":hover": {width: 58, height: 58, border: '3px solid #1DA1F2', transform: 'translate(-7%, -7%)',  cursor: 'pointer' }}} /> : null}
                         </Grid>
                         <Grid item xs={11}>
                             <Grid container >
                                 <Grid item xs={6}>
                                     {tweetUser ? 
-                                        <div className="signature" onClick={(e) => handleProfileView(e, tweetUser)}> 
-                                            <Typography color={textColor} variant="inherit" className="display-name"> 
+                                        <div className="signature" > 
+                                            <Typography onClick={(e) => handleProfileView(e, tweetUser)} color={textColor} variant="inherit" className="display-name"> 
                                                 {tweetUser.displayName} 
                                             </Typography> 
                                             <Typography variant="inherit" id="at-sign">
@@ -241,7 +239,7 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
                                 </Grid>
                                 <Grid item xs={6}>
                                     <IconButton color="primary" onClick={(e) => handleDeleteClick(e)} className="options-button">
-                                        <Typography className={backgroundColor == "white" ? "options-text" : "dark-options-text"}>
+                                        <Typography className={backgroundColor==="white" ? "options-text" : "dark-options-text"}>
                                             ...
                                         </Typography>
                                     </IconButton>
@@ -255,42 +253,42 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
                             {tweet.media ? <img src={`data:image/jpg;base64, ${tweet.media}`} className="reply-image" /> : null } 
                         </Grid>
                         <Grid item xs={12}>
-                            <Grid container className={backgroundColor == "white" ? "view-tweet-section" : "dark-view-tweet-section"} >
+                            <Grid container className={backgroundColor==="white" ? "view-tweet-section" : "dark-view-tweet-section"} >
                                 <Grid item xs={4} display="flex">
-                                    <Typography className={backgroundColor == "white" ? "view-tweet-count" : "dark-view-tweet-count"} >
+                                    <Typography className={backgroundColor==="white" ? "view-tweet-count" : "dark-view-tweet-count"} >
                                         {replies.length !== 0 ? replies.length : null}
                                     </Typography>
-                                    <Typography className={ backgroundColor == "white" ? "detail-text": "dark-detail-text"}>
+                                    <Typography className={ backgroundColor==="white" ? "detail-text": "dark-detail-text"}>
                                             Quote Tweets
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={4} display="flex">
-                                    <Typography className={backgroundColor == "white" ? "view-tweet-count" : "dark-view-tweet-count"} >
+                                    <Typography className={backgroundColor==="white" ? "view-tweet-count" : "dark-view-tweet-count"} >
                                         {retweets.length !== 0 ? retweets.length : null}
                                     </Typography>
-                                    <Typography className={ backgroundColor == "white" ? "detail-text": "dark-detail-text"}>
+                                    <Typography className={ backgroundColor==="white" ? "detail-text": "dark-detail-text"}>
                                             Retweets
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={4} display="flex">
-                                    <Typography className={backgroundColor == "white" ? "view-tweet-count" : "dark-view-tweet-count"}>
+                                    <Typography className={backgroundColor==="white" ? "view-tweet-count" : "dark-view-tweet-count"}>
                                         {likes.length !== 0 ? likes.length : null}
                                     </Typography>
-                                    <Typography className={ backgroundColor == "white" ? "detail-text": "dark-detail-text"}>
+                                    <Typography className={ backgroundColor==="white" ? "detail-text": "dark-detail-text"}>
                                         Likes
                                     </Typography>
                                 </Grid>
                             </Grid>
                         </Grid>
                         <Grid item xs={12}>
-                            <Grid container className={backgroundColor == "white" ? "view-tweet-section" : "dark-view-tweet-section"}  >
+                            <Grid container className={backgroundColor==="white" ? "view-tweet-section" : "dark-view-tweet-section"}  >
                                 <Grid item xs={2}>
-                                    <IconButton onClick={(e) => e.stopPropagation()} sx={backgroundColor == "white" ? {":hover": {color: "violet" }} :  {color:'dimgrey', ":hover": {color: "violet" }}}>
+                                    <IconButton onClick={(e) => e.stopPropagation()} sx={backgroundColor==="white" ? {":hover": {color: "violet" }} :  {color:'dimgrey', ":hover": {color: "violet" }}}>
                                         <CatchingPokemonIcon fontSize="medium" />
                                     </IconButton>
                                 </Grid>
                                 <Grid item xs={2}>
-                                    <IconButton onClick={(e) => handleReplyOpen(e)} sx={backgroundColor == "white" ? {":hover": {color: "#1DA1F2"}} : {color:'dimgrey', ":hover": {color: "#1DA1F2"}}} >
+                                    <IconButton onClick={(e) => handleReplyOpen(e)} sx={backgroundColor==="white" ? {":hover": {color: "#1DA1F2"}} : {color:'dimgrey', ":hover": {color: "#1DA1F2"}}} >
                                         <ModeCommentOutlinedIcon fontSize="medium" />
                                     </IconButton>
                                 </Grid>
@@ -300,7 +298,7 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
                                             <RepeatRoundedIcon fontSize="medium" />
                                         </IconButton>
                                         :
-                                        <IconButton sx={backgroundColor == "white" ? {":hover": {color: "lightseagreen"}} : {color:'dimgrey', ":hover": {color: "lightseagreen"}}} onClick={(e) =>handleRetweet(e)}>
+                                        <IconButton sx={backgroundColor==="white" ? {":hover": {color: "lightseagreen"}} : {color:'dimgrey', ":hover": {color: "lightseagreen"}}} onClick={(e) =>handleRetweet(e)}>
                                             <RepeatRoundedIcon fontSize="medium" />
                                         </IconButton>
                                     }
@@ -311,20 +309,20 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
                                                 <FavoriteIcon fontSize="medium"  /> 
                                             </IconButton>
                                             : 
-                                            <IconButton sx={backgroundColor == "white" ? {":hover": {color: "#f50057"}} : {color:'dimgrey', ":hover": {color: "#f50057"}}} onClick={(e) =>handleLike(e)}>
+                                            <IconButton sx={backgroundColor==="white" ? {":hover": {color: "#f50057"}} : {color:'dimgrey', ":hover": {color: "#f50057"}}} onClick={(e) =>handleLike(e)}>
                                                 <FavoriteBorderIcon fontSize="medium" />
                                             </IconButton>
                                         }
                                 </Grid>
                                 <Grid item xs={2}>
-                                    <IconButton onClick={(e) => e.stopPropagation()} sx={backgroundColor == "white" ? {":hover": {color: "#1DA1F2"}} : {color:'dimgrey', ":hover": {color: "#1DA1F2"}}} >
+                                    <IconButton onClick={(e) => e.stopPropagation()} sx={backgroundColor==="white" ? {":hover": {color: "#1DA1F2"}} : {color:'dimgrey', ":hover": {color: "#1DA1F2"}}} >
                                         <IosShareOutlinedIcon fontSize="small" />
                                     </IconButton>
                                 </Grid>
                             </Grid>
                         </Grid>
                         <Grid item xs={12}>
-                            <Grid container className={backgroundColor == "white" ? "view-tweet-section" : "dark-view-tweet-section"}  spacing={1}>
+                            <Grid container className={backgroundColor==="white" ? "view-tweet-section" : "dark-view-tweet-section"}  spacing={1}>
                             {replyFieldFocus ? 
                                     <Grid item xs={12}>
                                         <Grid container>
@@ -345,7 +343,7 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
                                     {loggedInUser ? <Avatar variant="circular" sx={{ width: 56, height: 56}} src={`data:image/jpg;base64, ${loggedInUser.imageFiles}`} /> : null}
                                 </Grid>
                                 <Grid item xs={11}>
-                                    <TextField id={textColor == "black" ? "tweet-message" : "dark-tweet-message"}  onFocus={() => setReplyFieldFocus(true)} autoComplete='off' className="tweet-text" onChange={(e) => checkText(e.target.value)} placeholder="What's Happening?" variant="standard" />
+                                    <TextField id={textColor==="black" ? "tweet-message" : "dark-tweet-message"}  onFocus={() => setReplyFieldFocus(true)} autoComplete='off' className="tweet-text" onChange={(e) => checkText(e.target.value)} placeholder="What's Happening?" variant="standard" />
                                 </Grid>
                                 {replyFieldFocus ? 
                                     <Grid item xs={12}>
@@ -432,7 +430,7 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 onClick={(e) => e.stopPropagation()}
-                BackdropProps={{timeout: 500, sx: backgroundColor == "white" ? {backgroundColor: "rgba(0, 0, 0, 0.5)" } : {backgroundColor: "rgba(255, 255, 255, 0.1)" }}}
+                BackdropProps={{timeout: 500, sx: backgroundColor==="white" ? {backgroundColor: "rgba(0, 0, 0, 0.5)" } : {backgroundColor: "rgba(255, 255, 255, 0.1)" }}}
             >
                 <Fade in={replyOpen}>
                 <Card elevation={0} style={{backgroundColor: backgroundColor}} sx={style}>

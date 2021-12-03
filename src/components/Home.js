@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Grid from '@mui/material/Grid'
 import HomeHeader from './HomeComponents/HomeHeader'
 import TweetFeed from './HomeComponents/TweetFeed'
-import { IconButton, Typography } from '@mui/material'
-import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 import { FacebookCircularProgress } from './GlobalComponents/Loading'
 import Header from './GlobalComponents/Header'
 

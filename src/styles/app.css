@@ -382,6 +382,9 @@ p.home-text {
 .signature {
     display: flex;
 }
+.signature:hover {
+    cursor: pointer;
+}
 
 .Mui-disabled {
     background-color: rgb(29, 155, 240, 0.4) !important;

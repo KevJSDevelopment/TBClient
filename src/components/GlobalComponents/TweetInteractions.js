@@ -13,12 +13,12 @@ const TweetInteractions = ({handleReplyOpen, backgroundColor, replies, retweets,
         <Grid item xs={12}>
             <Grid container>
                 <Grid item xs={2}>
-                    <IconButton onClick={(e) => e.stopPropagation()} sx={backgroundColor == "white" ? {":hover": {color: "violet" }} :  {color:'dimgrey', ":hover": {color: "violet" }}}>
+                    <IconButton onClick={(e) => e.stopPropagation()} sx={backgroundColor==="white" ? {":hover": {color: "violet" }} :  {color:'dimgrey', ":hover": {color: "violet" }}}>
                         <CatchingPokemonIcon fontSize="small" />
                     </IconButton>
                 </Grid>
                 <Grid item xs={2}>
-                    <IconButton onClick={(e) => handleReplyOpen(e)} sx={backgroundColor == "white" ? {":hover": {color: "#1DA1F2"}} : {color:'dimgrey', ":hover": {color: "#1DA1F2"}}} >
+                    <IconButton onClick={(e) => handleReplyOpen(e)} sx={backgroundColor==="white" ? {":hover": {color: "#1DA1F2"}} : {color:'dimgrey', ":hover": {color: "#1DA1F2"}}} >
                         <ModeCommentOutlinedIcon fontSize="small" />
                         <Typography variant="tweetInteractions" >
                                 {replies.length !== 0 ? replies.length : null}
@@ -34,7 +34,7 @@ const TweetInteractions = ({handleReplyOpen, backgroundColor, replies, retweets,
                             </Typography>
                         </IconButton>
                         :
-                        <IconButton sx={backgroundColor == "white" ? {":hover": {color: "lightseagreen"}} : {color:'dimgrey', ":hover": {color: "lightseagreen"}}} onClick={(e) =>handleRetweet(e)}>
+                        <IconButton sx={backgroundColor==="white" ? {":hover": {color: "lightseagreen"}} : {color:'dimgrey', ":hover": {color: "lightseagreen"}}} onClick={(e) =>handleRetweet(e)}>
                             <RepeatRoundedIcon fontSize="small" />
                             <Typography variant="tweetInteractions" >
                                 {retweets.length !== 0 ? retweets.length : null}
@@ -51,7 +51,7 @@ const TweetInteractions = ({handleReplyOpen, backgroundColor, replies, retweets,
                                 </Typography>
                             </IconButton>
                             : 
-                            <IconButton sx={backgroundColor == "white" ? {":hover": {color: "#f50057"}} : {color:'dimgrey', ":hover": {color: "#f50057"}}} onClick={(e) =>handleLike(e)}>
+                            <IconButton sx={backgroundColor==="white" ? {":hover": {color: "#f50057"}} : {color:'dimgrey', ":hover": {color: "#f50057"}}} onClick={(e) =>handleLike(e)}>
                                 <FavoriteBorderIcon fontSize="small" />
                                 <Typography variant="tweetInteractions" >
                                     {likes.length !== 0 ? likes.length : null}
@@ -60,7 +60,7 @@ const TweetInteractions = ({handleReplyOpen, backgroundColor, replies, retweets,
                         }
                 </Grid>
                 <Grid item xs={2}>
-                    <IconButton onClick={(e) => e.stopPropagation()} sx={backgroundColor == "white" ? {":hover": {color: "#1DA1F2"}} : {color:'dimgrey', ":hover": {color: "#1DA1F2"}}} >
+                    <IconButton onClick={(e) => e.stopPropagation()} sx={backgroundColor==="white" ? {":hover": {color: "#1DA1F2"}} : {color:'dimgrey', ":hover": {color: "#1DA1F2"}}} >
                         <IosShareOutlinedIcon fontSize="small" />
                     </IconButton>
                 </Grid>

@@ -1,15 +1,13 @@
-import { Grid, IconButton } from '@mui/material'
+import { Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import Header from './GlobalComponents/Header'
 import { FacebookCircularProgress } from './GlobalComponents/Loading'
 import ViewReplyContainer from './ViewTweetComponents/ViewReplyContainer'
 import ViewTweetContainer from './ViewTweetComponents/ViewTweetContainer'
-import { useNavigate } from 'react-router'
 
 const ViewTweet = ({viewTweet, handleProfileView, textColor, handleViewTweet, loggedInUser, tweets, getTweets, backgroundColor, loading}) => {
 
     const [replies, setReplies] = useState([])
-    const navigate = useNavigate()
 
     const getReplies = async () => {
         debugger

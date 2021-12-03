@@ -94,7 +94,7 @@ const NewTweetModal = ({ getTweets, textColor, loggedInUser, tweet, tweetUser })
                         {loggedInUser ? <Avatar variant="circular" sx={{ width: 56, height: 56}} src={`data:image/jpg;base64, ${loggedInUser.imageFiles}`} /> : null}
                     </Grid>
                     <Grid item xs={10}>
-                        <TextField id={textColor == "black" ? "reply-message" : "dark-reply-message"} className="tweet-text" onChange={(e) => checkText(e.target.value)} placeholder="What's Happening?" variant="standard" />
+                        <TextField id={textColor==="black" ? "reply-message" : "dark-reply-message"} className="tweet-text" onChange={(e) => checkText(e.target.value)} placeholder="What's Happening?" variant="standard" />
                     </Grid>
                 </Grid>
             </Grid>

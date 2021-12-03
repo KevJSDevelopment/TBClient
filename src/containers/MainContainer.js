@@ -80,7 +80,7 @@ const MainContainer = ({ textColor, background, setBackground, backgroundColor, 
 
   return (
       <Grid container spacing={1}>
-        <Grid item xs={4} className={backgroundColor == "white" ? "nav" : "dark-nav"}>
+        <Grid item xs={4} className={backgroundColor==="white" ? "nav" : "dark-nav"}>
           <Grid container >
             <Grid item xs={7} />
             <Nav backgroundColor={backgroundColor} background={background} textColor={textColor} setBackground={setBackground} />
@@ -96,7 +96,7 @@ const MainContainer = ({ textColor, background, setBackground, backgroundColor, 
             </Routes>
           </Grid>
         </Grid>
-        <Grid item className={backgroundColor == "white" ? "discover" : "dark-discover"} xs={4}>
+        <Grid item className={backgroundColor==="white" ? "discover" : "dark-discover"} xs={4}>
           <Grid container>
             <Discover textColor={textColor} />
           </Grid>

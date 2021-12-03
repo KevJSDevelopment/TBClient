@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Avatar, Backdrop, Button, Card, Fade, Grid, IconButton, Modal, Popover, Typography } from '@mui/material'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import { Box, color } from '@mui/system';
 import NewTweetModal from './NewTweetModal';
 import TweetInteractions from '../GlobalComponents/TweetInteractions';
 
@@ -84,7 +83,7 @@ const TweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, twee
         if(!data.Status){
             setTweetIsLikedByUser(true)
         }
-        else if(data.Status == 204){
+        else if(data.Status===204){
             setTweetIsLikedByUser(false)
         }
         else {
@@ -131,7 +130,7 @@ const TweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, twee
         if(!data.Status){
             setTweetIsRetweetedByUser(true)
         }
-        else if(data.Status == 204){
+        else if(data.Status===204){
             setTweetIsRetweetedByUser(false)
         }
         else {
@@ -160,7 +159,7 @@ const TweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, twee
     
     const deleteTweet = async (e) => {
         e.stopPropagation();
-        const res = await fetch(`https://localhost:5001/poketwitter/tweets/${tweet.tweetId}`, { method: 'DELETE' });
+        await fetch(`https://localhost:5001/poketwitter/tweets/${tweet.tweetId}`, { method: 'DELETE' });
     
         getTweets()
     };
@@ -170,31 +169,27 @@ const TweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, twee
 
     useEffect(() => {
         getTweetUser()
-    }, [tweets])
-
-    useEffect(() => {
         checkLike()
         checkRetweet()
         getTweetReplies()
         getLikes()
         getRetweets()
-    }, [])
-
+    }, [tweets])
 
     return (
-        <Card id={`tweet-${tweet.id}`} className={backgroundColor == "white" ? index == 0 ? "tweet-card-0" : "tweet-card" : index == 0 ? "dark-tweet-card-0" : "dark-tweet-card"} onClick={(e) => handleViewTweet(e, tweet.tweetId)} elevation={0} style={{backgroundColor: backgroundColor}}>
+        <Card id={`tweet-${tweet.id}`} className={backgroundColor==="white" ? index===0 ? "tweet-card-0" : "tweet-card" : index===0 ? "dark-tweet-card-0" : "dark-tweet-card"} onClick={(e) => handleViewTweet(e, tweet.tweetId)} elevation={0} style={{backgroundColor: backgroundColor}}>
             <Grid container>
                 <Grid item xs={12}>
-                    <Grid container spacing={2} >
+                    <Grid container spacing={2}>
                         <Grid item xs={1}>
-                            {tweetUser ? <Avatar onClick={(e) => handleProfileView(e, tweetUser)} src={`data:image/jpg;base64, ${tweetUser.imageFiles}`} sx={{ width: 56, height: 56}} /> : null}
+                            {tweetUser ? <Avatar onClick={(e) => handleProfileView(e, tweetUser)} src={`data:image/jpg;base64, ${tweetUser.imageFiles}`} sx={{ width: 56, height: 56, ":hover": {width: 58, height: 58, border: '3px solid #1DA1F2', transform: 'translate(-6%, -6%)',  cursor: 'pointer' }}} /> : null}
                         </Grid>
                         <Grid item xs={11}>
                             <Grid container >
                                 <Grid item xs={6}>
                                     {tweetUser ? 
-                                        <div className="signature" onClick={(e) => handleProfileView(e, tweetUser)}> 
-                                            <Typography color={textColor} variant="inherit" className="display-name"> 
+                                        <div className="signature" > 
+                                            <Typography onClick={(e) => handleProfileView(e, tweetUser)} color={textColor} variant="inherit" className="display-name"> 
                                                 {tweetUser.displayName} 
                                             </Typography> 
                                             <Typography variant="inherit" id="at-sign">
@@ -247,7 +242,7 @@ const TweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, twee
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 onClick={(e) => e.stopPropagation()}
-                BackdropProps={{timeout: 500, sx: backgroundColor == "white" ? {backgroundColor: "rgba(0, 0, 0, 0.5)" } : {backgroundColor: "rgba(255, 255, 255, 0.1)" }}}
+                BackdropProps={{timeout: 500, sx: backgroundColor==="white" ? {backgroundColor: "rgba(0, 0, 0, 0.5)" } : {backgroundColor: "rgba(255, 255, 255, 0.1)" }}}
             >
                 <Fade in={replyOpen}>
                 <Card elevation={0} style={{backgroundColor: backgroundColor}} sx={style}>

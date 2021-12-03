@@ -13,7 +13,7 @@ const Header = ({ text, textColor, backButton }) => {
     }
 
     return (
-        <Grid container alignItems="center" className={textColor == "black" ? "home-title" : "dark-home-title"}>
+        <Grid container alignItems="center" className={textColor==="black" ? "home-title" : "dark-home-title"}>
             {backButton ? 
                 <Grid item xs={1}> 
                     <IconButton color="primary" onClick={() => handleNav()}>

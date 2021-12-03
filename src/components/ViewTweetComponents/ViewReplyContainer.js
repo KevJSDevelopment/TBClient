@@ -78,7 +78,7 @@ const ViewReplyContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
         if(!data.Status){
             setTweetIsLikedByUser(true)
         }
-        else if(data.Status == 204){
+        else if(data.Status===204){
             setTweetIsLikedByUser(false)
         }
         else {
@@ -125,7 +125,7 @@ const ViewReplyContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
         if(!data.Status){
             setTweetIsRetweetedByUser(true)
         }
-        else if(data.Status == 204){
+        else if(data.Status===204){
             setTweetIsRetweetedByUser(false)
         }
         else {
@@ -168,16 +168,16 @@ const ViewReplyContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
     }, [])
 
     return (
-        <Grid container spacing={2} id={`reply-${reply.quoteTweetId}`} className={backgroundColor == "white" ? "tweet-card" : "dark-tweet-card"} onClick={(e) => handleViewTweet(e, reply.tweetId)} style={{backgroundColor: backgroundColor}} >
+        <Grid container spacing={2} id={`reply-${reply.quoteTweetId}`} className={backgroundColor==="white" ? "tweet-card" : "dark-tweet-card"} onClick={(e) => handleViewTweet(e, reply.tweetId)} style={{backgroundColor: backgroundColor}} >
             <Grid item xs={1}>
-                {user ? <Avatar onClick={(e) => handleProfileView(e, user)} src={`data:image/jpg;base64, ${user.imageFiles}`} sx={{ width: 56, height: 56}} /> : null}
+                {user ? <Avatar onClick={(e) => handleProfileView(e, user)} src={`data:image/jpg;base64, ${user.imageFiles}`} sx={{ width: 56, height: 56, ":hover": {width: 58, height: 58, border: '3px solid #1DA1F2', transform: 'translate(-6%, -6%)',  cursor: 'pointer' }}} /> : null}
             </Grid>
             <Grid item xs={11}>
                 <Grid container>
                     <Grid item xs={6}>
                         {user ? 
-                            <div className="signature" onClick={(e) => handleProfileView(e, user)}> 
-                                <Typography color={textColor} variant="inherit" className="display-name"> 
+                            <div className="signature" > 
+                                <Typography onClick={(e) => handleProfileView(e, user)} color={textColor} variant="inherit" className="display-name"> 
                                     {user.displayName} 
                                 </Typography> 
                                 <Typography variant="inherit" id="at-sign">
@@ -227,7 +227,7 @@ const ViewReplyContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 onClick={(e) => e.stopPropagation()}
-                BackdropProps={{timeout: 500, sx: backgroundColor == "white" ? {backgroundColor: "rgba(0, 0, 0, 0.5)" } : {backgroundColor: "rgba(255, 255, 255, 0.1)" }}}
+                BackdropProps={{timeout: 500, sx: backgroundColor==="white" ? {backgroundColor: "rgba(0, 0, 0, 0.5)" } : {backgroundColor: "rgba(255, 255, 255, 0.1)" }}}
             >
                 <Fade in={replyOpen}>
                 <Card elevation={0} style={{backgroundColor: backgroundColor}} sx={style}>

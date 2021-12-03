@@ -8,7 +8,6 @@ const App = () => {
   const [background, setBackground] = useState(false)
   const [backgroundColor, setBackgroundColor] = useState("white")
   const [loggedInUser, setUser] = useState(false)
-  const [viewTweet, setViewTweet] = useState(false)
 
 
   // const meta = {

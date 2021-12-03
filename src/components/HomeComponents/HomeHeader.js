@@ -46,14 +46,14 @@ const HomeHeader = ({ textColor, loggedInUser, getTweets }) => {
     }
 
     return (
-        <Grid container spacing={2} className={textColor == "black" ? "home-header" : "dark-home-header"}>
+        <Grid container spacing={2} className={textColor==="black" ? "home-header" : "dark-home-header"}>
             <Grid item xs={12}>
                 <Grid container alignItems="center" spacing={1}>
                     <Grid item xs={1}>
-                        {loggedInUser ? <Avatar variant="circular" sx={{ width: 56, height: 56}} src={`data:image/jpg;base64, ${loggedInUser.imageFiles}`} /> : null}
+                        {loggedInUser ? <Avatar variant="circular" sx={{ width: 56, height: 56, ":hover": {width: 58, height: 58, border: '3px solid #1DA1F2', transform: 'translate(-6%, -6%)', cursor: 'pointer' }}} src={`data:image/jpg;base64, ${loggedInUser.imageFiles}`} /> : null}
                     </Grid>
                     <Grid item xs={10}>
-                        <TextField id={textColor == "black" ? "tweet-message" : "dark-tweet-message"} autoComplete='off' className="tweet-text" onChange={(e) => checkText(e.target.value)} placeholder="What's Happening?" variant="standard" />
+                        <TextField id={textColor==="black" ? "tweet-message" : "dark-tweet-message"} autoComplete='off' className="tweet-text" onChange={(e) => checkText(e.target.value)} placeholder="What's Happening?" variant="standard" />
                     </Grid>
                 </Grid>
             </Grid>
