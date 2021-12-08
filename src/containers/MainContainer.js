@@ -13,12 +13,13 @@ import ViewTweet from '../components/ViewTweet'
 
 
 
-const MainContainer = ({ textColor, background, setBackground, backgroundColor, loggedInUser}) => {
+const MainContainer = ({ setNFTArray, textColor, background, setBackground, backgroundColor, loggedInUser, profilePicture}) => {
 
   const [viewTweet, setViewTweet] = useState(false)
   const [profile, setProfile] = useState(false)
   const [tweets, setTweets] = useState([])
   const [loading, setLoading] = useState(true)
+
 
   const url = `https://localhost:5001/home/${loggedInUser.username}`
 
@@ -90,7 +91,7 @@ const MainContainer = ({ textColor, background, setBackground, backgroundColor, 
           <Grid container>
             <Routes>
               <Route path="/" element={<Home loggedInUser={loggedInUser} getTweets={getTweets} tweets={tweets} loading={loading} textColor={textColor} backgroundColor={backgroundColor} handleViewTweet={handleViewTweet} handleProfileView={handleProfileView} />} />
-              <Route path="Profile/:username" element={<Profile setProfile={setProfile} profile={profile} textColor={textColor} backgroundColor={backgroundColor} handleViewTweet={handleViewTweet} handleProfileView={handleProfileView} loggedInUser={loggedInUser} />}  />
+              <Route path="Profile/:username" profilePicture={profilePicture} element={<Profile setProfile={setProfile} profile={profile} textColor={textColor} backgroundColor={backgroundColor} handleViewTweet={handleViewTweet} handleProfileView={handleProfileView} loggedInUser={loggedInUser} />}  />
               <Route path="ViewTweet" element={<ViewTweet loading={loading} viewTweet={viewTweet} textColor={textColor} getTweets={getTweets} handleProfileView={handleProfileView} loggedInUser={loggedInUser} backgroundColor={backgroundColor} handleViewTweet={handleViewTweet} />} />
               <Route path="*" element={<Navigate replace to="/" />} />
             </Routes>
@@ -98,7 +99,7 @@ const MainContainer = ({ textColor, background, setBackground, backgroundColor, 
         </Grid>
         <Grid item className={backgroundColor==="white" ? "discover" : "dark-discover"} xs={4}>
           <Grid container>
-            <Discover textColor={textColor} />
+            <Discover setNFTArray={setNFTArray} textColor={textColor} />
           </Grid>
         </Grid>
     </Grid>

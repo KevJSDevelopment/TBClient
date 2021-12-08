@@ -1,9 +1,10 @@
-import { Avatar, Card, CardActions, CardContent, CardMedia, Grid, Tab, Tabs, Typography } from '@mui/material'
+import { Card, CardActions, CardContent, CardMedia, FormControlLabel, Grid, Slide, Switch, Tab, Tabs, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import Header from './GlobalComponents/Header'
 import defaultBackground from '../images/Default-background.png'
 import TweetContainer from './HomeComponents/TweetContainer'
 import { useParams } from 'react-router'
+import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 
 
 const TweetTypes = ['Tweets', 'Tweets&Replies', 'Media', 'Likes'];
@@ -14,6 +15,22 @@ const Profile = ({ profile, setProfile, textColor, backgroundColor, handleProfil
     const [tweetCollection, setTweetCollection] = useState([])
     const [tweetCollectionType, setTweetCollectionType] = useState('Tweets')
     const { username } = useParams();
+    const [profileImagesShown, setProfileImagesShown] = useState(true);
+    const [showNftImages, setShowNftImages] = useState(false);
+
+    const handleProfileImageChange = () => {
+        if(profileImagesShown){
+            setProfileImagesShown((prev) => !prev);
+            setTimeout(() => {
+                setShowNftImages((prev) => !prev)
+            }, 750);
+        } else {
+            setShowNftImages((prev) => !prev)
+            setTimeout(() => {
+                setProfileImagesShown((prev) => !prev);
+            }, 750);
+        }
+    };
 
     const handleChange = (e, newValue) => {
         setValue(newValue)
@@ -48,11 +65,7 @@ const Profile = ({ profile, setProfile, textColor, backgroundColor, handleProfil
     }
 
     const getTweets = () => {
-
         getListOfTweetsToDisplay(tweetCollectionType);
-
-
-        
     }
 
     const getUserTweets = async () => {
@@ -114,8 +127,14 @@ const Profile = ({ profile, setProfile, textColor, backgroundColor, handleProfil
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <CardContent sx={{transform: "translate(0%, -25%)"}}>
-                            <Avatar sx={{ width: 96, height: 96, border: `5px solid ${backgroundColor}`}} src={`data:image/jpg;base64, ${profile.imageFiles}`} />
+                        <CardContent sx={{transform: "translate(0%, -25%)", paddingBottom: 0}}>
+                        <FormControlLabel control={<Switch checked={profileImagesShown} onChange={handleProfileImageChange} />}label="Show"/>
+                            <Slide direction="right" in={profileImagesShown} mountOnEnter unmountOnExit timeout={750} >
+                                <img className="profile-image" src={`data:image/jpg;base64, ${profile.imageFiles}`} />
+                            </Slide>
+                            <Slide direction="left" in={showNftImages} mountOnEnter unmountOnExit timeout={750} >
+                                <img className="profile-image" src={`data:image/jpg;base64, ${profile.imageFiles}`} />
+                            </Slide>
                             <div style={{display: "flex"}}>
                                 <Typography color={textColor} variant="inherit" className="display-name"> 
                                     {profile.displayName} 
@@ -129,15 +148,15 @@ const Profile = ({ profile, setProfile, textColor, backgroundColor, handleProfil
                             </div>
                         </CardContent>
                     </Grid>
-                    <Grid item xs={12}>
-                        <CardContent style={{display: "flex"}}>
+                    {profile.bio ? <Grid item xs={12}>
+                        <CardContent style={{display: "flex", transform: "translate(0%, -25%)", paddingBottom: 0}}>
                             <Typography variant="inherit" color={textColor}>
                                 {profile.bio}
                             </Typography>
                         </CardContent>
-                    </Grid>
+                    </Grid> : null}
                     <Grid item xs={12}>
-                        <CardContent style={{display: "flex"}}>
+                        <CardContent style={{display: "flex", transform: "translate(0%, -25%)", paddingBottom: 0}}>
                             <Typography variant="inherit" color={textColor}>
                                 Following
                             </Typography>

@@ -59,8 +59,6 @@ const TweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, twee
             body: JSON.stringify({ userId: tweet.userId, tweetId: tweet.tweetId})
         }
 
-        debugger
-    
         await fetch(`https://localhost:5001/poketwitter/liketweet/${loggedInUser.userId}`, meta);
     
         getLikes()
@@ -73,7 +71,6 @@ const TweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, twee
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({ userId: tweet.userId, tweetId: tweet.tweetId})
         }
-        debugger
 
         const res = await fetch(`https://localhost:5001/poketwitter/checklike/${loggedInUser.userId}`, meta);
         

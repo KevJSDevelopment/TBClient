@@ -337,8 +337,21 @@ p.home-text {
     max-height: 300px;
 }
 
-#avatar-image {
-    left: 50% !important;
+.profile-image {
+    width: 15%;
+    height: 15%;
+    border-radius: 5rem 5rem 5rem 5rem;
+    
+}
+
+.profile-image:hover {
+    cursor: pointer;
+    border: solid #1DA1F2;
+    transform: translate(-3%, -3%);
+}
+
+.css-1s2z6tz-MuiCardContent-root:last-child{
+    padding-bottom: 0px;
 }
 
 .modal-card {

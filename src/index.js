@@ -5,7 +5,6 @@ import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider } from "@mui/material"
 import { BrowserRouter } from "react-router-dom";
 
-
 const theme = createTheme({
   overrides: {
     MuiTypography: {
@@ -36,11 +35,11 @@ const theme = createTheme({
 })
 
 ReactDOM.render(
-  <BrowserRouter >
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </BrowserRouter>,
+    <BrowserRouter >
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>,
   document.getElementById('root')
 );
 
