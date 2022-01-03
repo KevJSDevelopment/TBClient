@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react"
 import './styles/app.css';
-import MainContainer from "./containers/MainContainer"
-import Login from "./components/Login";
+import MainContainer from "./MainContainer"
+import Login from "./containers/Login";
 
 const App = () => {
   
   const [background, setBackground] = useState(false)
   const [backgroundColor, setBackgroundColor] = useState("white")
-  const [loggedInUser, setUser] = useState(false)
-  const [NFTArray, setNFTArray] = useState([])
-  const [profilePicture, setProfilePicture] = useState('')
+  const [loggedInUser, setUser] = useState(null)
   const [textColor, setTextColor] = useState("black")
 
   useEffect(() => { 
@@ -24,17 +22,26 @@ const App = () => {
       setBackgroundColor("#141d26")
       setTextColor("white")
     }      
+
+    return () => {
+      setBackgroundColor('white')
+      setTextColor('black')
+    }
   }, [background])
   
   useEffect(() => {
     if(sessionStorage.getItem("user")){
       setUser(JSON.parse(sessionStorage.getItem("user")))
     }
+
+    return () => {
+      setUser(null)
+    }
   }, [])
 
   return (
     <div className="App">
-      {loggedInUser ? <MainContainer setNFTArray={setNFTArray} loggedInUser={loggedInUser} textColor={textColor} background={background} setBackground={setBackground} backgroundColor={backgroundColor}/> : <Login setUser={setUser} />}
+      {loggedInUser ? <MainContainer loggedInUser={loggedInUser} textColor={textColor} background={background} setBackground={setBackground} backgroundColor={backgroundColor} setUser={setUser} /> : <Login setUser={setUser} />}
     </div>
   );
 }

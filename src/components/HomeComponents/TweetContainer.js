@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Avatar, Backdrop, Button, Card, Fade, Grid, IconButton, Modal, Popover, Typography } from '@mui/material'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import NewTweetModal from './NewTweetModal';
-import TweetInteractions from '../GlobalComponents/TweetInteractions';
+import TweetInteractions from '../TweetInteractions';
 
 const style = {
     position: 'absolute',
@@ -121,8 +121,6 @@ const TweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, twee
         const res = await fetch(`https://localhost:5001/poketwitter/checkretweet/${loggedInUser.userId}`, meta);
     
         const data = await res.json()
-    
-        console.log(data.Status)
     
         if(!data.Status){
             setTweetIsRetweetedByUser(true)

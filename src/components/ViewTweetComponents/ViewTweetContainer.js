@@ -13,6 +13,8 @@ import GifOutlinedIcon from '@mui/icons-material/GifOutlined';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import { width } from '@mui/system';
 
 const style = {
     position: 'absolute',
@@ -26,7 +28,8 @@ const style = {
 const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, tweet, textColor, backgroundColor, tweets, getTweets, index}) => {
 
     const [tweetUser, setUser] = useState(null);
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [deleteAnchorEl, setDeleteAnchorEl] = useState(null);
+    const [shareAnchorEl, setShareAnchorEl] = useState(null);
     const [tweetIsLikedByUser, setTweetIsLikedByUser] = useState(false)
     const [likes, setLikes] = useState([])
     const [tweetIsRetweetedByUser, setTweetIsRetweetedByUser] = useState(false)
@@ -35,6 +38,7 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
     const [replyOpen, setReplyOpen] = useState(false);
     const [tweetDisabled, setTweetDisabled] = useState(true)
     const [replyFieldFocus, setReplyFieldFocus] = useState(false)
+    const [openShareModal, setOpenShareModal] = useState(false)
 
     const handleReplyOpen = (e) => {
         e.stopPropagation();
@@ -54,13 +58,40 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
 
     const handleDeleteClick = (e) => {
         e.stopPropagation();
-        setAnchorEl(e.currentTarget);
+        setDeleteAnchorEl(e.currentTarget);
     };
 
     const handleDeleteClose = (e) => {
         e.stopPropagation();
-        setAnchorEl(null);
+        setDeleteAnchorEl(null);
     };
+
+    const handleOpenShareModal = (e) => {
+        e.stopPropagation();
+        setShareAnchorEl(e.currentTarget);
+        setOpenShareModal(true)
+    };
+
+    const handleCloseShareModal = (e) => {
+        e.stopPropagation();
+        setShareAnchorEl(null);
+        setOpenShareModal(false)
+    };
+
+    const addBookmark = async (e) => {
+        e.stopPropagation();
+
+        const meta = { 
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ userId: loggedInUser.userId, tweetId: tweet.tweetId})
+        }
+
+        const res = await fetch('https://localhost:5001/poketwitter/bookmarks', meta);
+
+        // add error handling
+
+    }
 
     const handleLike = async (e) => {
         e.stopPropagation();
@@ -196,8 +227,9 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
         getTweets()
     }
 
-    const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
+    const open = Boolean(deleteAnchorEl);
+    const id = open ? 'delete-popover' : undefined;
+    const id2 = openShareModal ? 'share-popover' : undefined;
 
     useEffect(() => {
         getTweetUser()
@@ -315,7 +347,7 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
                                         }
                                 </Grid>
                                 <Grid item xs={2}>
-                                    <IconButton onClick={(e) => e.stopPropagation()} sx={backgroundColor==="white" ? {":hover": {color: "#1DA1F2"}} : {color:'dimgrey', ":hover": {color: "#1DA1F2"}}} >
+                                    <IconButton onClick={(e) => e.stopPropagation()} sx={backgroundColor==="white" ? {":hover": {color: "#1DA1F2"}} : {color:'dimgrey', ":hover": {color: "#1DA1F2"}}} onClick={(e) => handleOpenShareModal(e)}>
                                         <IosShareOutlinedIcon fontSize="small" />
                                     </IconButton>
                                 </Grid>
@@ -410,7 +442,7 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
             </Grid>
             <Popover id={id}
                 open={open}
-                anchorEl={anchorEl}
+                anchorEl={deleteAnchorEl}
                 onClose={(e) => handleDeleteClose(e)}
                 onClick={(e) => e.stopPropagation()}
                 anchorOrigin={{
@@ -420,6 +452,20 @@ const ViewTweetContainer = ({ handleProfileView, handleViewTweet, loggedInUser, 
                 <Button variant="contained" color="error" onClick={(e) => deleteTweet(e)}>
                     <DeleteOutlinedIcon />
                     Delete
+                </Button>
+            </Popover>
+            <Popover id={id2}
+                open={openShareModal}
+                anchorEl={shareAnchorEl}
+                onClose={(e) => handleCloseShareModal(e)}
+                onClick={(e) => e.stopPropagation()}
+                anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+                }}>
+                <Button variant="outlined" sx={{width: "100%", ":hover": {backgroundColor: '#0288d1', color: 'white'}}} color='info' onClick={(e) => addBookmark(e)}>
+                    <BookmarkBorderIcon className="button-text" />
+                    Bookmark
                 </Button>
             </Popover>
             <Modal

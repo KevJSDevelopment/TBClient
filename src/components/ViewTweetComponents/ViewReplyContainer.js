@@ -1,7 +1,7 @@
 import { Avatar, Backdrop, Button, Card, Fade, Grid, IconButton, Modal, Popover, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import TweetInteractions from '../GlobalComponents/TweetInteractions';
+import TweetInteractions from '../TweetInteractions';
 import NewTweetModal from '../HomeComponents/NewTweetModal';
 
 const style = {

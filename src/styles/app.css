@@ -5,7 +5,11 @@ body {
 
 .App {
     height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tab { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .login-page {
@@ -59,6 +63,11 @@ body {
     border-radius: 25px 25px 25px 25px !important;
 }
 
+.button.connect {
+    width: 90%;
+    height: 45px;
+}
+
 button.tweet {
     width: 100%;
     height: 55px;
@@ -67,14 +76,23 @@ button.tweet {
     font-size: 1.1rem !important;
 }
 
-.button.sign-up {
-    
+.button.sign-up {   
     width: 40%;
     margin-left: 30%;
     margin-right: 30%;
     margin-bottom: 5%;
     height: 55px;
     color: #1DA1F2;
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+}
+
+.button.save-changes {   
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 5%;
+    height: 55px;
     font-weight: 600 !important;
     font-size: 1.1rem !important;
 }
@@ -111,6 +129,10 @@ button.tweet-2 {
     color: white !important;
     font-weight: 600!important;
     font-size: 1rem !important;
+}
+
+.MuiTypography-root.count-text {
+    font-weight: 700 !important;
 }
 
 .view-tweet-count {
@@ -155,8 +177,6 @@ p.home-text {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
     float: right;
-    padding: 2% !important;
-    margin: 3% !important;
 }
 
 .bar-icon {
@@ -189,6 +209,14 @@ p.home-text {
 
 .home-title {
     border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+.dark-home-title {
+    border-bottom: 1px solid dimgrey;
+}
+
+.header-content {
+    margin-top: 1% !important;
 }
 
 #tweet-message {
@@ -237,10 +265,6 @@ p.home-text {
 }
 
 .dark-home-header {
-    border-bottom: 1px solid dimgrey;
-}
-
-.dark-home-title {
     border-bottom: 1px solid dimgrey;
 }
 
@@ -338,16 +362,50 @@ p.home-text {
 }
 
 .profile-image {
-    width: 15%;
-    height: 15%;
+    width: 10rem;
     border-radius: 5rem 5rem 5rem 5rem;
-    
 }
 
-.profile-image:hover {
+.edit-profile-image {
+    width: 10rem;
+    border-radius: 5rem 5rem 5rem 5rem;
+}
+
+.nft-profile-image {
+    width: 10rem;
+    border-radius: 5rem 5rem 5rem 5rem;
+}
+
+.nft-profile-image:hover {
     cursor: pointer;
     border: solid #1DA1F2;
-    transform: translate(-3%, -3%);
+    width: 9.59rem;
+}
+
+.secondary-profile-image {
+    width: 4rem;
+    margin: 1%;
+    margin-top: 15%;
+    border-radius: 5rem 5rem 5rem 5rem;
+}
+
+.secondary-profile-image:hover {
+    cursor: pointer;
+    border: solid #1DA1F2;
+    width: 3.59rem;
+}
+
+.gallery-item { 
+    border-radius: 15px 15px 15px 15px;
+}
+
+.selected-gallery-item { 
+    border-radius: 15px 15px 15px 15px;
+    border: solid #1DA1F2 !important;
+}
+
+.select-button {
+    float: right;
 }
 
 .css-1s2z6tz-MuiCardContent-root:last-child{
@@ -364,9 +422,87 @@ p.home-text {
     border-radius: 25px 25px 25px 25px !important;
 }
 
+.edit-modal-card {
+    width: 35%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 25px 25px 25px 25px !important;
+}
+
+.gallery-card {
+    position: absolute;
+    left: 50%;
+    width: 60vw;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px 10px 10px 10px !important;
+    overflow-y: visible !important;
+    max-height: 90vh;
+}
+
+.gallery-header { 
+    text-align: center;
+    font-weight: 700 !important;
+    font-size: 28px !important;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-transform: capitalize !important;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    margin-right: 1rem;
+    position: absolute;
+    left: 0;
+    padding: 1rem;
+    /* width: 0px; */
+  }
+  
+  ::-webkit-scrollbar-track {
+    margin-right: 1rem;
+    position: absolute;
+    left: 0;
+    padding: 1rem;
+    background: rgba(126, 126, 126, 0.1);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    margin-right: 1rem;
+    position: absolute;
+    left: 0;
+    padding: 1rem;
+    background: rgba(126, 126, 126, 0.2);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    margin-right: 1rem;
+    position: absolute;
+    left: 0;
+    padding: 1rem;
+    background: rgba(126, 126, 126, 1);
+  }
+  
+  /* code below is for testing purposes */
+  
+  #scrollTest{
+    padding-bottom: 100rem;
+  }
+
+.gallery-container { 
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
 
 .MuiTypography-root.display-name {
     font-weight: 700 !important;
+}
+
+.MuiTypography-root.profile-display-name {
+    font-weight: 700 !important;
+    font-size: 28px !important;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .css-37jdci-MuiTypography-root {
